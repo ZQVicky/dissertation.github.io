@@ -16,27 +16,27 @@
 
     <div id="propChart">
         <script type="text/javascript">
-          d3.csv("data/propensity.csv", function(d) {
+          d3.csv("data/tenure type.csv", function(d) {
             return {
-              Year: d["Academic Year"], // convert "Year" column to Date
-              Propensity: d["Term-time accommodation"],
+              Year: d["Year"], // convert "Year" column to Date
+              Type: d["Type"],
               Numbers: +d.Number // convert "Length" column to number
             };
           }, function(error, data) {
             console.log(data)
-            var svg = dimple.newSvg("#propChart", 730, 330)
+            var svg = dimple.newSvg("#propChart", 400, 300)
                               .attr("id","pro_bar");
 
             d3.select("#pro_bar")
                 .append('text')
                 .attr("transform", "translate(10,50)")
                 .style("font-weight","bold")
-                .text("Full-time and sandwich students by term-time accommodation \n \r 2015/16 and 2016/17");
+                .text("Student tenure types 2008–2016, per cent");
 
             var propChart = new dimple.chart(svg, data);
-            propChart.setBounds(200, -250, 450, 210)
+            propChart.setBounds(200, -250, 350, 200)
             propChart.addMeasureAxis("x", "Numbers");
-            propChart.addCategoryAxis("y", ["Propensity","Year"]);
+            propChart.addCategoryAxis("y", ["Type","Year"]);
             propChart.addSeries("Year", dimple.plot.bar);
             propChart.addLegend(120, 60, 510, 20, "right");
             propChart.draw();
