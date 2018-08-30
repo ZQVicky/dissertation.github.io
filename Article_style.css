@@ -1,0 +1,75 @@
+
+/*   article 1      */
+.uk,.application,.enrol {
+  display: flex;
+  flex-direction:row;
+  padding-left: 4em;
+}
+
+.label {
+  font-style: rgb(56, 56, 52)
+}
+
+#enrol_t{
+  padding-left: 25em;
+}
+#chart_1{
+  padding-left: 4em;
+}
+.line {
+  fill: none;
+  /* stroke: steelblue; */
+  stroke-width: 2px;
+}
+
+.button {
+  font-size: 2em;
+  width: 7em;
+  height: auto;
+  margin-right: 0.5em;
+}
+
+
+.overlay {
+  fill: none;
+  pointer-events: all;
+}
+
+.hover-line {
+  stroke: black;
+  stroke-width: 1px;
+  /* stroke-dasharray: 3,3; */
+}
+/* country bar charts */
+
+.toolTip {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    position: absolute;
+    display: none;
+    width: auto;
+    height: auto;
+    background: none repeat scroll 0 0 white;
+    border: 0 none;
+    border-radius: 8px 8px 8px 8px;
+    box-shadow: -3px 3px 15px #888888;
+    color: black;
+    font: 12px sans-serif;
+    padding: 5px;
+    text-align: center;
+}
+
+
+/* Article 2 */
+.hall, .bed, .hmo{
+  display: flex;
+  flex-direction: row;
+  padding-left: 4em;
+}
+
+#hmo_area,#domNum{
+  margin-left: 2em;
+}
+
+text{
+  font-size: 12px;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="Article_style.css" />
+    <script src="//d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+    <title>Article 3</title>
+  </head>
+  <body>
+    <div id="propChart">
+        <script type="text/javascript">
+          d3.csv("data/propensity.csv", function(d) {
+            return {
+              Year: d["Academic Year"], // convert "Year" column to Date
+              Propensity: d["Term-time accommodation"],
+              Numbers: +d.Number // convert "Length" column to number
+            };
+          }, function(error, data) {
+            console.log(data)
+            var svg = dimple.newSvg("#propChart", 730, 330)
+                              .attr("id","pro_bar");
+
+            d3.select("#pro_bar")
+                .append('text')
+                .attr("transform", "translate(10,50)")
+                .style("font-weight","bold")
+                .text("Full-time and sandwich students by term-time accommodation \n \r 2015/16 and 2016/17");
+
+            var propChart = new dimple.chart(svg, data);
+            propChart.setBounds(200, -250, 450, 210)
+            propChart.addMeasureAxis("x", "Numbers");
+            propChart.addCategoryAxis("y", ["Propensity","Year"]);
+            propChart.addSeries("Year", dimple.plot.bar);
+            propChart.addLegend(120, 60, 510, 20, "right");
+            propChart.draw();
+          });
+        </script>
+    </div>
+
+  </body>
+</html>
