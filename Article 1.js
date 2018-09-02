@@ -1,6 +1,6 @@
 // Students by level of study  2000/01 to 2016/17
 
-d3.csv("data/Article 1/full-time total.csv",function(Data){
+d3.csv("../data/Article 1/full-time total.csv",function(Data){
     console.log(Data)
     var data = Data.columns.slice(1,5).map(function(id) {
 
@@ -16,8 +16,8 @@ d3.csv("data/Article 1/full-time total.csv",function(Data){
     });
     console.log('data:', data);
 
-        var width = 650;
-        var height = 300;
+        var width = 455;
+        var height = 260;
 
         var main_chart = d3.select('#chart_1')
                   .append('svg')
@@ -27,7 +27,7 @@ d3.csv("data/Article 1/full-time total.csv",function(Data){
         var margin = {
         top: 60,
         left: 60,
-        right: 120,
+        right: 90,
         bottom: 40
       };
 
@@ -61,7 +61,8 @@ d3.csv("data/Article 1/full-time total.csv",function(Data){
       var y_scale = d3.scaleLinear()
             .range([height,0]);
 
-      var z = d3.scaleOrdinal(d3.schemeCategory10);;
+      var colour =["rgb(128, 177, 211)","rgb(179, 222, 105)","rgb(253, 180, 98)","rgb(251, 128, 114)"]
+      var z = d3.scaleOrdinal(colour);;
 
       var xAxis = d3.axisBottom(x_scale);
 
@@ -90,14 +91,13 @@ d3.csv("data/Article 1/full-time total.csv",function(Data){
          .attr("transform", "translate(0," + height + ")")
          .call(xAxis)
          .selectAll("text")
-         .attr("y", 10)
+         .attr("y", 15)
          .attr("x", 5)
          .attr("dy", ".35em")
          .attr("transform", "rotate(-40)")
          .style("text-anchor", "end")
          .append("text")
          .attr("fill", "#000")
-         .attr("font","sans-serif")
          .text("Year");
 
        //append y axis
@@ -110,7 +110,6 @@ d3.csv("data/Article 1/full-time total.csv",function(Data){
          .attr("x", -25)
          .attr("dy", "0.38em")
          .attr("fill", "#000")
-         .attr("font","sans-serif")
          .attr("class","billion")
          .text("Number of student");
 

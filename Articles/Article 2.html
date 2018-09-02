@@ -2,7 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="Article_style.css" />
+    <link rel="stylesheet" type="text/css" href="../css_style/index_style.css" />
+    <link rel="stylesheet" type="text/css" href="../css_style/Article_style.css" />
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <script src="https://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.js"></script>
@@ -11,11 +12,25 @@
     <title>Article 2</title>
   </head>
   <body>
-    <div><a href="index.html">Home</a></div>
+    <input type="checkbox" id = "menu">
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Article 1.html">Article 1</a></li>
+        <li><a href="Article 2.html">Article 2</a></li>
+        <li><a href="Article 3.html">Article 3</a></li>
+        <li><a href="Article 4.html">Article 4</a></li>
+      </ul>
+    </nav>
 
     <div id="ceChart">
       <script type="text/javascript">
-        d3.csv("data/Article 2/student acc cardiff.csv", function(d,i) {
+        d3.csv("../data/Article 2/student acc cardiff.csv", function(d,i) {
           return {
             Type:d["Type"],
             Percentage: +d["Percentage"] // convert "Numbers" column to number
@@ -69,7 +84,7 @@
     </div>
     <div id="hmo_year">
       <script type="text/javascript">
-        d3.csv("data/Article 2/Year hmo space to letting.csv", function(d,i) {
+        d3.csv("../data/Article 2/Year hmo space to letting.csv", function(d,i) {
           return {
             Year:d["Year"],
             Space: +d["Space"],
@@ -122,7 +137,7 @@
 
       <div id="hmo_area">
         <script type="text/javascript">
-          d3.csv("data/Article 2/Area hmo space to letting.csv", function(d,i) {
+          d3.csv("../data/Article 2/Area hmo space to letting.csv", function(d,i) {
             return {
               Area:d["Area"],
               Space: +d["Space"],
@@ -158,7 +173,7 @@
     <div class="bed">
       <div id="emro_t">
         <script type="text/javascript">
-          d3.csv("data/Article 1/cardiff enrolment all.csv", function(d) {
+          d3.csv("../data/Article 1/cardiff enrolment all.csv", function(d) {
             return {
               Year: d["Year"], // convert "Year" column to Date
               University: d["HE provider"],
@@ -195,7 +210,7 @@
 
       <div id="domNum">
         <script type="text/javascript">
-          d3.csv("data/Article 2/doms count.csv", function(d,i) {
+          d3.csv("../data/Article 2/doms count.csv", function(d,i) {
             return {
               Year:d["Year"],
               Status:d["Status"],
@@ -235,7 +250,7 @@
     <div class="hall">
       <div id="doms">
         <script type="text/javascript">
-          d3.csv("data/Article 2/doms.csv", function(d) {
+          d3.csv("../data/Article 2/doms.csv", function(d) {
             return {
               Block:d["Block"],
               Owner:d["Owner"],
@@ -321,7 +336,7 @@
 
     <div id="typeChart">
       <script type="text/javascript">
-        d3.csv("data/Article 2/Type of room.csv", function(d) {
+        d3.csv("../data/Article 2/Type of room.csv", function(d) {
           return {
             Year: d.Year, // convert "Year" column to Date
             Type: d["Type"],
@@ -379,31 +394,6 @@
       </script>
     </div>
 
-    <div id="priceChart">
-      <script type="text/javascript">
-        d3.csv("data/Article 2/price.csv", function (data) {
-          var svg = dimple.newSvg("#priceChart", 430, 300)
-                          .attr("id","pr_line");
-
-        d3.select("#pr_line")
-            .append('text')
-            .attr("transform", "translate(40,16)")
-            .style("font-weight","bold")
-            .text("Chart 11: Average price of Studio and En-suit (2014-2018)");
-
-          var priceChart = new dimple.chart(svg, data);
-          priceChart.setBounds(50, 30, 350, 185);
-          var x = priceChart.addCategoryAxis("x", "Year");
-          x.addOrderRule("Date");
-          priceChart.addMeasureAxis("y", "Price");
-          priceChart.addSeries("Type", dimple.plot.line);
-          priceChart.addSeries("Type", dimple.plot.bubble);
-          priceChart.addLegend(200, 100, 100, 300, "left");
-          priceChart.draw();
-        });
-      </script>
-
-    </div>
 
 
 

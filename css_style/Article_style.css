@@ -1,4 +1,6 @@
-
+body {
+  background-color: white;
+}
 /*   article 1      */
 .uk,.application,.enrol {
   display: flex;
@@ -28,7 +30,9 @@
   height: auto;
   margin-right: 0.5em;
 }
-
+.axis text {
+  font-size: 9px;
+}
 
 .overlay {
   fill: none;

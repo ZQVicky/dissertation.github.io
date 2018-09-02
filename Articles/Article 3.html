@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css_style/index_style.css" />
+    <link rel="stylesheet" type="text/css" href="css_style/Article_style.css" />
+    <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
+    <script src="https://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.js"></script>
+
+    <title>Article 3</title>
+  </head>
+  <body>
+    <input type="checkbox" id = "menu">
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Article 1.html">Article 1</a></li>
+        <li><a href="Article 2.html">Article 2</a></li>
+        <li><a href="Article 3.html">Article 3</a></li>
+        <li><a href="Article 4.html">Article 4</a></li>
+      </ul>
+    </nav>
+
+    <div id="propChart">
+        <script type="text/javascript">
+          d3.csv("../data/Article 3/tenure type.csv", function(d) {
+            return {
+              Year: d["Year"], // convert "Year" column to Date
+              Type: d["Type"],
+              Numbers: +d.Number // convert "Length" column to number
+            };
+          }, function(error, data) {
+            console.log(data)
+            var svg = dimple.newSvg("#propChart", 500, 260)
+                              .attr("id","pro_bar");
+
+            d3.select("#pro_bar")
+                .append('text')
+                .attr("transform", "translate(50,20)")
+                .style("font-weight","bold")
+                .text("Student tenure types 2008/09 and 2016/17, per cent");
+
+            var propChart = new dimple.chart(svg, data);
+            propChart.setBounds(100, -210, 300, 170)
+            var x = propChart.addMeasureAxis("x", "Numbers");
+            var y = propChart.addCategoryAxis("y", ["Type","Year"]);
+            var s = propChart.addSeries("Year", dimple.plot.bar);
+            s.afterDraw = function (shape, data) {
+                   // Get the shape as a d3 selection
+                var s = d3.select(shape),
+                  rect = {
+                    x: parseFloat(s.attr("x")),
+                    y: parseFloat(s.attr("y")),
+                    width: parseFloat(s.attr("width")),
+                    height: parseFloat(s.attr("height"))
+                  };
+                // Only label bars where the text can fit
+                if (rect.height >= 3) {
+                  // Add a text label for the value
+                  svg.append("text")
+                    // Position in the centre of the shape (vertical position is
+                    // manually set due to cross-browser problems with baseline)
+                    .attr("x", rect.x + rect.width-20)
+                    .attr("y", rect.y + rect.height / 2 + 3.5)
+                    // Centre align
+                    .style("text-anchor", "middle")
+                    .style("font-size", "10px")
+                    .style("font-family", "sans-serif")
+                    // Make it a little transparent to tone down the black
+                    .style("opacity", 1)
+                    // Prevent text cursor on hover and allow tooltips
+                    .style("pointer-events", "none")
+                    // Format the number
+                    .text(d3.format(",.0f")(data.xValue) + "%");
+                }
+              }
+            propChart.addLegend(60, 30, 310, 20, "right");
+            propChart.draw();
+          });
+        </script>
+    </div>
+
+    <div id="priceChart">
+      <script type="text/javascript">
+        d3.csv("../data/Article 3/price.csv", function (data) {
+          var svg = dimple.newSvg("#priceChart", 430, 300)
+                          .attr("id","pr_line");
+
+        d3.select("#pr_line")
+            .append('text')
+            .attr("transform", "translate(40,16)")
+            .style("font-weight","bold")
+            .text("Chart 2: Average price of Studio and En-suit (2014-2018)");
+
+          var priceChart = new dimple.chart(svg, data);
+          priceChart.setBounds(50, 60, 350, 165);
+          var x = priceChart.addCategoryAxis("x", "Year");
+          x.addOrderRule("Date");
+          priceChart.addMeasureAxis("y", "Price");
+          priceChart.addSeries("Type", dimple.plot.line);
+          priceChart.addSeries("Type", dimple.plot.bubble);
+          priceChart.addLegend(60, 30, 310, 20, "right");
+          priceChart.draw();
+        });
+      </script>
+
+    </div>
+
+    <div id="levelChart">
+        <script type="text/javascript">
+          d3.csv("../data/Article 3/level of study.csv",function(d) {
+            return {
+              Provider: d["HE provider"], // convert "Year" column to Date
+              Level: d["Level of study"],
+              Region:d["Sex/Domicile"],
+              Numbers: +d["Student count"] // convert "Length" column to number
+            };
+          }, function(error, data) {
+            console.log(data)
+            var svg = dimple.newSvg("#levelChart", 500, 400)
+                              .attr("id","level");
+
+            d3.select("#level")
+                .append('text')
+                .attr("transform", "translate(50,20)")
+                .style("font-weight","bold")
+                .text("Full-time student by level of study in Cardiff 2016/17");
+
+            var levelChart = new dimple.chart(svg, data);
+            levelChart.setBounds(100, 90, 360, 180)
+            var x = levelChart.addCategoryAxis("x", "Level");
+            var y = levelChart.addMeasureAxis("y", "Numbers" );
+            levelChart.addSeries("Region", dimple.plot.bar);
+            levelChart.addSeries(null, dimple.plot.bubble);
+            // s.afterDraw = function (shape, data) {
+            //        // Get the shape as a d3 selection
+            //     var s = d3.select(shape),
+            //       rect = {
+            //         x: parseFloat(s.attr("x")),
+            //         y: parseFloat(s.attr("y")),
+            //         width: parseFloat(s.attr("width")),
+            //         height: parseFloat(s.attr("height"))
+            //       };
+            //     // Only label bars where the text can fit
+            //     if (rect.height >= 3) {
+            //       // Add a text label for the value
+            //       svg.append("text")
+            //         // Position in the centre of the shape (vertical position is
+            //         // manually set due to cross-browser problems with baseline)
+            //         .attr("x", rect.x + rect.width-20)
+            //         .attr("y", rect.y + rect.height / 2 + 3.5)
+            //         // Centre align
+            //         .style("text-anchor", "middle")
+            //         .style("font-size", "10px")
+            //         .style("font-family", "sans-serif")
+            //         // Make it a little transparent to tone down the black
+            //         .style("opacity", 1)
+            //         // Prevent text cursor on hover and allow tooltips
+            //         .style("pointer-events", "none")
+            //         // Format the number
+            //         .text(d3.format(",.0f")(data.xValue) + "%");
+            //     }
+            //   }
+            levelChart.addLegend(60, 30, 310, 20, "right");
+            levelChart.draw();
+            x.shapes.selectAll("text").attr("transform",
+              function (d) {
+                return d3.select(this).attr("transform") + " translate(80, 120) rotate(-110)";
+              });
+          });
+        </script>
+    </div>
+
+
+  </body>
+</html>

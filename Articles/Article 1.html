@@ -2,7 +2,8 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="Article_style.css" />
+    <link rel="stylesheet" type="text/css" href="../css_style/index_style.css" />
+    <link rel="stylesheet" type="text/css" href="../css_style/Article_style.css" />
     <script src="https://d3js.org/d3.v4.min.js" charset="utf-8"></script>
     <script src="https://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.js"></script>
@@ -11,13 +12,27 @@
     <title>Article 1</title>
   </head>
   <body>
-    <div><a href="index.html">Home</a></div>
+    <input type="checkbox" id = "menu">
+    <label for="menu" class="menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </label>
+    <nav class="nav">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Article 1.html">Article 1</a></li>
+        <li><a href="Article 2.html">Article 2</a></li>
+        <li><a href="Article 3.html">Article 3</a></li>
+        <li><a href="Article 4.html">Article 4</a></li>
+      </ul>
+    </nav>
 
     <div class="uk">
       <div id="main_chart" >
         <script type="text/javascript">
 
-          d3.csv("data/Article 1/total.csv", function(d,i) {
+          d3.csv("../data/Article 1/total.csv", function(d,i) {
             return {
               Year:d["Year"],
               Total:d["Region"],
@@ -25,23 +40,23 @@
             };
           }, function(error, data) {
             console.log(data);
-            var svg1 = dimple.newSvg("#main_chart", 610, 300)
+            var svg1 = dimple.newSvg("#main_chart", 430, 300)
                             .attr("id","chart1");;
 
             d3.select("#chart1")
                 .append('text')
-                .attr("transform", "translate(60,20)")
+                .attr("transform", "translate(40,20)")
                 .style("font-weight","bold")
                 .text("Chart 1: UK HE student enrolments from 2000/01 to 2016/17");
 
             var Chart1 = new dimple.chart(svg1, data);
-                Chart1.setBounds(60, 50, 500, 208)
+                Chart1.setBounds(60, 50, 350, 168)
                 var x = Chart1.addCategoryAxis("x","Year");
                 x.addOrderRule("Year");
                 Chart1.addMeasureAxis("y", "Numbers");
                 Chart1.addSeries("Total", dimple.plot.line);
                 Chart1.addSeries("Total",dimple.plot.scatter)
-            var Legend = Chart1.addLegend(560, 100, 60, 100, "left");
+            var Legend = Chart1.addLegend(360, 30, 60, 100, "left");
                 Chart1.draw();
             x.shapes.selectAll("text").attr("transform",
               function (d) {
@@ -51,14 +66,14 @@
           </script>
       </div>
       <div id="chart_1">
-        <script type="text/javascript" src="Article 1.js"></script>
+        <script type="text/javascript" src="../Article 1.js"></script>
       </div>
     </div>
 
     <div class="application">
       <div id="accChart">
         <script type="text/javascript">
-          d3.csv("data/Article 1/acceptance.csv",function(d) {
+          d3.csv("../data/Article 1/acceptance.csv",function(d) {
             return {
               Year: d["Cycle Year"], // convert "Year" column to Date
               Application: d["Applications"],
@@ -68,29 +83,29 @@
             };
           }, function(error, data) {
             console.log(data)
-            var svg = dimple.newSvg("#accChart", 730, 380)
+            var svg = dimple.newSvg("#accChart", 575, 300)
                               .attr("id","acc_pie");
 
             d3.select("#acc_pie")
                 .append('text')
-                .attr("transform", "translate(30,70)")
+                .attr("transform", "translate(15,70)")
                 .style("font-weight","bold")
                 .text("Chart 3: Undergraduate Applications and Acceptances by Universities in Cardiff");
 
             var accChart = new dimple.chart(svg, data);
-              accChart.setBounds(50, -250, 450, 200)
+              accChart.setBounds(45, -200, 350, 160)
               accChart.addMeasureAxis("y", "Numbers");
               var x = accChart.addCategoryAxis("x", "Year");
                   x.addOrderRule("Year");
               accChart.addMeasureAxis("p", "Numbers");
               var z = accChart.addMeasureAxis("z", "Numbers");
               var ringOne = accChart.addSeries(["Year","App_Acc"], dimple.plot.pie);
-                  ringOne.innerRadius = 23;
-                  ringOne.outerRadius = 30;
+                  ringOne.innerRadius = 17;
+                  ringOne.outerRadius = 22;
               var boubleOne = accChart.addSeries(["Year","Application"],dimple.plot.bouble)
               var lineOne = accChart.addSeries(["Application","University"],dimple.plot.line)
               var scatterOne = accChart.addSeries(["Year","University","App_Acc"],dimple.plot.pie)
-              accChart.addLegend(510, 100, 100, 300, "left");
+              accChart.addLegend(410, 100, 100, 300, "left");
               accChart.draw();
           });
         </script>
@@ -98,7 +113,7 @@
       </div>
       <div id="appRegion">
         <script type="text/javascript">
-          d3.csv("data/Article 1/region application.csv", function(d) {
+          d3.csv("../data/Article 1/region application.csv", function(d) {
             return {
               Year: d["Year"], // convert "Year" column to Date
               University: d["Provider"],
@@ -109,23 +124,23 @@
             };
           }, function(error, data) {
             console.log(data);
-            var svg = dimple.newSvg("#appRegion", 730, 380)
+            var svg = dimple.newSvg("#appRegion", 500, 300)
                             .attr("id","ar_C");
 
             d3.select("#ar_C")
                 .append('text')
-                .attr("transform", "translate(80,70)")
+                .attr("transform", "translate(40,70)")
                 .style("font-weight","bold")
                 .text("Chart 4: Undergraduate Applications by regions in Cardiff");
 
             var arChart = new dimple.chart(svg, data);
-            arChart.setBounds(50, -250, 450, 200)
+            arChart.setBounds(50, -200, 350, 160)
             var x = arChart.addCategoryAxis("x", ["Region","Year"]);
             x.addOrderRule("Year");
             arChart.addMeasureAxis("y", "App");
             arChart.addSeries("Domicile", dimple.plot.line);
             arChart.addSeries("Domicile", dimple.plot.scatter);
-            arChart.addLegend(510, 100, 100, 300, "left");
+            arChart.addLegend(400, 100, 100, 300, "left");
             arChart.draw();
           });
         </script>
@@ -140,7 +155,7 @@
     <div class="enrol">
       <div id="emroChart">
         <script type="text/javascript">
-          d3.csv("data/Article 1/cardiff enrolment all.csv", function(d) {
+          d3.csv("../data/Article 1/cardiff enrolment all.csv", function(d) {
             return {
               Year: d["Year"], // convert "Year" column to Date
               University: d["HE provider"],
@@ -151,73 +166,44 @@
             };
           }, function(error, data) {
             console.log(data);
-            var svg1 = dimple.newSvg("#enrol_t", 730, 400)
+            var svg1 = dimple.newSvg("#enrol_t", 500, 260)
                             .attr("id","emor_t");;
 
             d3.select("#emor_t")
                 .append('text')
                 .attr("class","text")
-                .attr("transform", "translate(60,40)")
+                .attr("transform", "translate(20,40)")
                 .style("font-weight","bold")
                 .text("Chart 5: Cardiff All mode HE student enrolments from 2013/14 to 2016/17");
 
             var emroChart1 = new dimple.chart(svg1, data);
-                emroChart1.setBounds(60, 50, 500, 200)
+                emroChart1.setBounds(45, 60, 350, 160)
                 var x = emroChart1.addCategoryAxis("x", "Year");
                 x.addOrderRule("Year");
                 emroChart1.addMeasureAxis("y", "Numbers");
-                emroChart1.addSeries("Enrollment", dimple.plot.line);
+                emroChart1.addSeries(null, dimple.plot.line);
                 emroChart1.addSeries(null,dimple.plot.scatter)
-            var emroLegend = emroChart1.addLegend(560, 100, 60, 100, "left");
+            var emroLegend = emroChart1.addLegend(400, 100, 60, 100, "left");
                 emroChart1.draw();
             ///////// barchart //////////
-            var svg = dimple.newSvg("#emroChart", 730, 410)
+            var svg = dimple.newSvg("#emroChart", 570, 280)
                             .attr("id","emor_chart");;
 
             d3.select("#emor_chart")
                 .append('text')
-                .attr("transform", "translate(60,25)")
+                .attr("transform", "translate(40,25)")
                 .style("font-weight","bold")
                 .text("Chart 6: Cardiff HE student enrolments by mode from 2013/14 to 2016/17");
 
             var emroChart = new dimple.chart(svg, data);
-                emroChart.setBounds(60, 50, 500, 320)
+                emroChart.setBounds(45, 50, 350, 160)
             var x = emroChart.addCategoryAxis("x", ["Year","Type"]);
                 x.addOrderRule("Year");
             var y = emroChart.addMeasureAxis("y", "Numbers");
                 // emroChart.addMeasureAxis("z", "Numbers");
             var s = emroChart.addSeries("University", dimple.plot.bar);
                 emroChart.addSeries(null, dimple.plot.bubble);
-            // s.afterDraw = function (shape, data) {
-            //            // Get the shape as a d3 selection
-            // var s = d3.select(shape),
-            //   rect = {
-            //     x: parseFloat(s.attr("x")),
-            //     y: parseFloat(s.attr("y")),
-            //     width: parseFloat(s.attr("width")),
-            //     height: parseFloat(s.attr("height"))
-            //   };
-            // // Only label bars where the text can fit
-            // if (rect.height >= 3) {
-            //   // Add a text label for the value
-            //   svg.append("text")
-            //     // Position in the centre of the shape (vertical position is
-            //     // manually set due to cross-browser problems with baseline)
-            //     .attr("x", rect.x + rect.width / 2)
-            //     .attr("y", rect.y + rect.height / 2 + 3.5)
-            //     // Centre align
-            //     .style("text-anchor", "middle")
-            //     .style("font-size", "10px")
-            //     .style("font-family", "sans-serif")
-            //     // Make it a little transparent to tone down the black
-            //     .style("opacity", 1)
-            //     // Prevent text cursor on hover and allow tooltips
-            //     .style("pointer-events", "none")
-            //     // Format the number
-            //     .text(d3.format(",.1f")(data.yValue/1000) + "k");
-            // }
-          // }
-            var emroLegend = emroChart.addLegend(560, 100, 100, 300, "left");
+            var emroLegend = emroChart.addLegend(400, 100, 100, 300, "left");
                 emroChart.draw();
           });
 
@@ -227,7 +213,7 @@
 
       <div id="full">
         <script type="text/javascript">
-          d3.csv("data/Article 1/cardiff full-time.csv", function(d) {
+          d3.csv("../data/Article 1/cardiff full-time.csv", function(d) {
             return {
               Year: d["Year"], // convert "Year" column to Date
               University: d["Provider"],
@@ -236,52 +222,23 @@
             };
           }, function(error, data) {
             console.log(data);
-            var svg = dimple.newSvg("#full", 730, 410)
+            var svg = dimple.newSvg("#full", 570, 280)
                             .attr("id","full_chart");;
 
             d3.select("#full_chart")
                 .append('text')
-                .attr("transform", "translate(60,25)")
+                .attr("transform", "translate(40,25)")
                 .style("font-weight","bold")
                 .text("Char 7: Cardiff full-time HE student enrolments by region from 2013/14 to 2016/17");
 
             var fullChart = new dimple.chart(svg, data);
-            fullChart.setBounds(60, 50, 500, 320)
+            fullChart.setBounds(45, 50, 350, 160)
             var x = fullChart.addCategoryAxis("x",["Region", "Year"])
             var y = fullChart.addMeasureAxis("y", "Numbers");
             var s = fullChart.addSeries("University", dimple.plot.bar);
             fullChart.addSeries(null, dimple.plot.bubble);
 
-          //   s.afterDraw = function (shape, data) {
-          //   var s = d3.select(shape),
-          //     rect = {
-          //       x: parseFloat(s.attr("x")),
-          //       y: parseFloat(s.attr("y")),
-          //       width: parseFloat(s.attr("width")),
-          //       height: parseFloat(s.attr("height"))
-          //     };
-          //   // Only label bars where the text can fit
-          //   if (rect.height >= 3) {
-          //     // Add a text label for the value
-          //     svg.append("text")
-          //       .attr("class","label")
-          //       // Position in the centre of the shape (vertical position is
-          //       // manually set due to cross-browser problems with baseline)
-          //       .attr("x", rect.x + rect.width / 2)
-          //       .attr("y", rect.y + rect.height / 2 + 3.5)
-          //       // Centre align
-          //       .style("text-anchor", "middle")
-          //       .style("font-size", "10px")
-          //       .style("font-family", "sans-serif")
-          //       // Make it a little transparent to tone down the black
-          //       .style("opacity", 1)
-          //       // Prevent text cursor on hover and allow tooltips
-          //       .style("pointer-events", "none")
-          //       // Format the number
-          //       .text(d3.format(",.1f")(data.yValue/1000) + "k");
-          //   }
-          // }
-            fullChart.addLegend(560, 100, 100, 300, "left");
+            fullChart.addLegend(400, 100, 100, 300, "left");
             fullChart.draw();
 
           });
