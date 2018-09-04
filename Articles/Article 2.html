@@ -27,374 +27,354 @@
         <li><a href="Article 4.html">Article 4</a></li>
       </ul>
     </nav>
+    <main>
 
-    <div id="ceChart">
-      <script type="text/javascript">
-        d3.csv("../data/Article 2/student acc cardiff.csv", function(d,i) {
-          return {
-            Type:d["Type"],
-            Percentage: +d["Percentage"] // convert "Numbers" column to number
-          };
-        }, function(error, data) {
-          console.log(data);
-          var svg = dimple.newSvg("#ceChart", 400, 300)
-                            .attr("id","ce");
+      <div id="ceChart">
+        <script type="text/javascript">
+          d3.csv("../data/Article 2/student acc cardiff.csv", function(d,i) {
+            return {
+              Type:d["Type"],
+              Percentage: +d["Percentage"] // convert "Numbers" column to number
+            };
+          }, function(error, data) {
+            console.log(data);
+            var svg = dimple.newSvg("#ceChart", 400, 300)
+                              .attr("id","ce");
 
-          d3.select("#ce")
-              .append('text')
-              .attr("transform", "translate(20,20)")
-              .style("font-weight","bold")
-              .text("Chart 1: Student Accommodation: Cardiff 2011");
+            d3.select("#ce")
+                .append('text')
+                .attr("transform", "translate(20,20)")
+                .style("font-weight","bold")
+                .text("Chart 1: Student Accommodation: Cardiff 2011");
 
-          var ceChart = new dimple.chart(svg, data);
-          ceChart.setBounds(20, 60, 240, 180)
-          ceChart.addMeasureAxis("p", "Percentage");
-          var s = ceChart.addSeries("Type", dimple.plot.pie);
-
-          s.afterDraw = function (shape, data) {
-                var radius = 25;
-
-                var arc = d3.arc()
-                        .outerRadius(radius*4)
-                        .innerRadius(radius/2);
-
-                var ctm = shape.getCTM();
-                ceChart.svg.append("text")
-                // Position text in the centre of the shape
-                    .attr("x", arc.centroid(data)[0])
-                    .attr("y", arc.centroid(data)[1])
-                    .attr("transform", function () {
-                        return "translate("+ctm.e+","+ctm.f+")";
-                    })
-                // Centre align and nicer display
-                    .style("text-anchor", "middle")
-                    .style("font-size", "15px")
-                    .style("font-family", "sans-serif")
-                    .style("opacity", 0.8)
-                // Prevent text cursor on hover and allow tooltips
-                    .style("pointer-events", "none")
-                // Display text
-                    .text((data.piePct*100).toFixed(0) + "%");
-              }
+            var ceChart = new dimple.chart(svg, data);
+            ceChart.setBounds(40, 60, 300, 180)
+            var x = ceChart.addCategoryAxis("x","Type");
+            ceChart.addMeasureAxis("y", "Percentage");
+            var s = ceChart.addSeries("Type", dimple.plot.bar);
             ceChart.addLegend(250, 60, 90, 300, "left");
             ceChart.draw();
-        });
-      </script>
-
-    </div>
-    <div id="hmo_year">
-      <script type="text/javascript">
-        d3.csv("../data/Article 2/Year hmo space to letting.csv", function(d,i) {
-          return {
-            Year:d["Year"],
-            Space: +d["Space"],
-            Total: +d["Total"] // convert "Numbers" column to number
-          };
-        }, function(error, data) {
-          console.log(data);
-          var svg = dimple.newSvg("#hmo_year", 450, 300)
-                            .attr("id","year");
-
-          d3.select("#year")
-              .append('text')
-              .attr("transform", "translate(20,20)")
-              .style("font-weight","bold")
-              .text("Chart 2: Romms avaiable to let in Cardiff between 2009 to 2018");
-
-          var hmoChart = new dimple.chart(svg, data);
-          hmoChart.setBounds(50, 60, 350, 180)
-          hmoChart.addCategoryAxis("x", "Year");
-          hmoChart.addMeasureAxis("y", "Total");
-          hmoChart.addSeries(null, dimple.plot.line);
-          hmoChart.addSeries(null, dimple.plot.scatter);
-          hmoChart.draw();
-
-          var svg2 = dimple.newSvg("#hmo_add", 450, 300)
-                            .attr("id","add");
-
-          d3.select("#add")
-              .append('text')
-              .attr("transform", "translate(0,20)")
-              .style("font-weight","bold")
-              .text("Chart 3: News rooms converted to let each year between 2009 to 2018");
-
-          var addChart = new dimple.chart(svg2, data);
-          addChart.setBounds(50, 60, 350, 180)
-          addChart.addCategoryAxis("x", "Year");
-          addChart.addMeasureAxis("y", "Space");
-          addChart.addSeries(null, dimple.plot.bar);
-          addChart.draw();
-
-        });
-      </script>
-    </div>
-
-
-    <div class="hmo">
-      <div id="hmo_add">
-
-      </div>
-
-      <div id="hmo_area">
-        <script type="text/javascript">
-          d3.csv("../data/Article 2/Area hmo space to letting.csv", function(d,i) {
-            return {
-              Area:d["Area"],
-              Space: +d["Space"],
-              Count: +d["Count"] // convert "Numbers" column to number
-            };
-          }, function(error, data) {
-            console.log(data);
-            var svg = dimple.newSvg("#hmo_area", 430, 300)
-                              .attr("id","area");
-
-            d3.select("#area")
-                .append('text')
-                .attr("transform", "translate(0,20)")
-                .style("font-weight","bold")
-                .text("Chart 4: Number of rooms avaiable to let in Cardiff by area 2018");
-
-            var hmoChart = new dimple.chart(svg, data);
-            hmoChart.setBounds(20, 70, 240, 180)
-            hmoChart.addMeasureAxis("p", "Space");
-            var s = hmoChart.addSeries("Area", dimple.plot.pie);
-            s.radius = 5;
-            hmoChart.addLegend(250, 20, 90, 300, "left");
-            hmoChart.draw();
+            x.shapes.selectAll("text").attr("transform",
+              function (d) {
+                return d3.select(this).attr("transform") + " translate(40, 60) rotate(-150)";
+              });
           });
         </script>
+
       </div>
-    </div>
-
-    <div class="map">
-      <iframe src="https://www.google.com/maps/d/embed?mid=1JYzbO3OBAvKd5GGhrRY-J9-9MOEawDNr" width="320" height="240"></iframe>
-    </div>
-
-    <div class="bed">
-      <div id="emro_t">
+      <div id="hmo_year">
         <script type="text/javascript">
-          d3.csv("../data/Article 1/cardiff enrolment all.csv", function(d) {
-            return {
-              Year: d["Year"], // convert "Year" column to Date
-              University: d["HE provider"],
-              Enrollment:d["enrolment"],
-              Type:d["Type"],
-              Region: d["Region"],
-              Numbers: +d.Number // convert "Length" column to number
-            };
-          }, function(error, data) {
-            console.log(data);
-
-            data1 = dimple.filterData(data, "Type", ["Full-time"])
-            var svg1 = dimple.newSvg("#emro_t", 440, 300)
-                            .attr("id","emor_t");;
-
-            d3.select("#emor_t")
-                .append('text')
-                .attr("transform", "translate(0,40)")
-                .style("font-weight","bold")
-                .text("Chart 5: Cardiff full-time HE student enrolments between 2013/14 to 2016/17");
-
-            var emroChart1 = new dimple.chart(svg1, data1);
-                emroChart1.setBounds(20, 60, 350, 180)
-                var x = emroChart1.addCategoryAxis("x", "Year");
-                x.addOrderRule("Year");
-                emroChart1.addMeasureAxis("y", "Numbers");
-                emroChart1.addSeries("Enrollment", dimple.plot.line);
-                emroChart1.addSeries(null,dimple.plot.scatter)
-            var emroLegend = emroChart1.addLegend(560, 100, 60, 100, "left");
-                emroChart1.draw();
-          });
-        </script>
-      </div>
-
-      <div id="domNum">
-        <script type="text/javascript">
-          d3.csv("../data/Article 2/doms count.csv", function(d,i) {
+          d3.csv("../data/Article 2/Year hmo space to letting.csv", function(d,i) {
             return {
               Year:d["Year"],
-              Status:d["Status"],
-              Type:d["Type"],
-              Beds: +d.Beds // convert "Numbers" column to number
+              Space: +d["Space"],
+              Total: +d["Total"] // convert "Numbers" column to number
             };
           }, function(error, data) {
             console.log(data);
-            var svg = dimple.newSvg("#domNum", 430, 300)
-                            .attr("id","num_bar");
+            var svg = dimple.newSvg("#hmo_year", 450, 300)
+                              .attr("id","year");
 
-            d3.select("#num_bar")
+            d3.select("#year")
+                .append('text')
+                .attr("transform", "translate(20,20)")
+                .style("font-weight","bold")
+                .text("Chart 2: Romms avaiable to let in Cardiff between 2009 to 2018");
+
+            var hmoChart = new dimple.chart(svg, data);
+            hmoChart.setBounds(50, 60, 350, 180)
+            hmoChart.addCategoryAxis("x", "Year");
+            hmoChart.addMeasureAxis("y", "Total");
+            hmoChart.addSeries(null, dimple.plot.line);
+            hmoChart.addSeries(null, dimple.plot.scatter);
+            hmoChart.draw();
+
+            var svg2 = dimple.newSvg("#hmo_add", 450, 300)
+                              .attr("id","add");
+
+            d3.select("#add")
                 .append('text')
                 .attr("transform", "translate(0,20)")
                 .style("font-weight","bold")
-                .text("Chart 6: Cardiff accommodation stock profile from 2000/01 to 2016/17");
+                .text("Chart 3: News rooms converted to let each year between 2009 to 2018");
 
-            var numChart = new dimple.chart(svg, data);
-            numChart.setBounds(30, 60, 350, 180);
-            var x = numChart.addCategoryAxis("x", "Year");
-                x.addOrderRule("Year");
-            numChart.addMeasureAxis("y", "Beds");
-            numChart.addSeries("Status", dimple.plot.bar);
-            numChart.addSeries(null, dimple.plot.line);
-            numChart.addLegend(30, 30, 400, 20, "right");
-            numChart.draw();
+            var addChart = new dimple.chart(svg2, data);
+            addChart.setBounds(50, 60, 350, 180)
+            addChart.addCategoryAxis("x", "Year");
+            addChart.addMeasureAxis("y", "Space");
+            addChart.addSeries(null, dimple.plot.bar);
+            addChart.draw();
 
           });
         </script>
+      </div>
+
+
+      <div class="hmo">
+        <div id="hmo_add">
+
+        </div>
+
+        <div id="hmo_area">
+          <script type="text/javascript">
+            d3.csv("../data/Article 2/Area hmo space to letting.csv", function(d,i) {
+              return {
+                Area:d["Area"],
+                Space: +d["Space"],
+                Count: +d["Count"] // convert "Numbers" column to number
+              };
+            }, function(error, data) {
+              console.log(data);
+              var svg = dimple.newSvg("#hmo_area", 430, 300)
+                                .attr("id","area");
+
+              d3.select("#area")
+                  .append('text')
+                  .attr("transform", "translate(0,20)")
+                  .style("font-weight","bold")
+                  .text("Chart 4: Number of rooms avaiable to let in Cardiff by area 2018");
+
+              var hmoChart = new dimple.chart(svg, data);
+              hmoChart.setBounds(20, 70, 240, 180)
+              hmoChart.addMeasureAxis("p", "Space");
+              var s = hmoChart.addSeries("Area", dimple.plot.pie);
+              s.radius = 5;
+              hmoChart.addLegend(250, 20, 90, 300, "left");
+              hmoChart.draw();
+            });
+          </script>
+        </div>
+      </div>
+
+      <div class="map">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1JYzbO3OBAvKd5GGhrRY-J9-9MOEawDNr" width="320" height="240"></iframe>
+      </div>
+
+      <div class="bed">
+        <div id="emro_t">
+          <script type="text/javascript">
+            d3.csv("../data/Article 1/cardiff enrolment all.csv", function(d) {
+              return {
+                Year: d["Year"], // convert "Year" column to Date
+                University: d["HE provider"],
+                Enrollment:d["enrolment"],
+                Type:d["Type"],
+                Region: d["Region"],
+                Numbers: +d.Number // convert "Length" column to number
+              };
+            }, function(error, data) {
+              console.log(data);
+
+              data1 = dimple.filterData(data, "Type", ["Full-time"])
+              var svg1 = dimple.newSvg("#emro_t", 440, 300)
+                              .attr("id","emor_t");;
+
+              d3.select("#emor_t")
+                  .append('text')
+                  .attr("transform", "translate(0,40)")
+                  .style("font-weight","bold")
+                  .text("Chart 5: Cardiff full-time HE student enrolments between 2013/14 to 2016/17");
+
+              var emroChart1 = new dimple.chart(svg1, data1);
+                  emroChart1.setBounds(20, 60, 350, 180)
+                  var x = emroChart1.addCategoryAxis("x", "Year");
+                  x.addOrderRule("Year");
+                  emroChart1.addMeasureAxis("y", "Numbers");
+                  emroChart1.addSeries("Enrollment", dimple.plot.line);
+                  emroChart1.addSeries(null,dimple.plot.scatter)
+              var emroLegend = emroChart1.addLegend(560, 100, 60, 100, "left");
+                  emroChart1.draw();
+            });
+          </script>
+        </div>
+
+        <div id="domNum">
+          <script type="text/javascript">
+            d3.csv("../data/Article 2/doms count.csv", function(d,i) {
+              return {
+                Year:d["Year"],
+                Status:d["Status"],
+                Type:d["Type"],
+                Beds: +d.Beds // convert "Numbers" column to number
+              };
+            }, function(error, data) {
+              console.log(data);
+              var svg = dimple.newSvg("#domNum", 430, 300)
+                              .attr("id","num_bar");
+
+              d3.select("#num_bar")
+                  .append('text')
+                  .attr("transform", "translate(0,20)")
+                  .style("font-weight","bold")
+                  .text("Chart 6: Cardiff accommodation stock profile from 2000/01 to 2016/17");
+
+              var numChart = new dimple.chart(svg, data);
+              numChart.setBounds(30, 60, 350, 180);
+              var x = numChart.addCategoryAxis("x", "Year");
+                  x.addOrderRule("Year");
+              numChart.addMeasureAxis("y", "Beds");
+              numChart.addSeries("Status", dimple.plot.bar);
+              numChart.addSeries(null, dimple.plot.line);
+              numChart.addLegend(30, 30, 400, 20, "right");
+              numChart.draw();
+
+            });
+          </script>
+
+        </div>
 
       </div>
 
-    </div>
+      <div id="bedPie"> </div>
 
-    <div id="bedPie"> </div>
+      <div class="hall">
+        <div id="doms">
+          <script type="text/javascript">
+            d3.csv("../data/Article 2/doms.csv", function(d) {
+              return {
+                Block:d["Block"],
+                Owner:d["Owner"],
+                Type:d["Type"],
+                Status:d["Status"],
+                Postcode:d["Postcode"],
+                Place:d.Place,
+                Operational:d["Operational"],
+                Count:+d.Count, // convert "Numbers" column to number
+              };
+            }, function(error, data) {
+              console.log(data);
+              var svg1 = dimple.newSvg("#bedPie", 430, 300)
+                              .attr("id","bed_pie");
 
-    <div class="hall">
-      <div id="doms">
+              data2 = dimple.filterData(data, "Operational", ["2000*","2001","2003","2005","2009","2010","2011","2012","2014","2015","2016","2017","2018"]);
+              d3.select("#bed_pie")
+                  .append('text')
+                  .attr("transform", "translate(60,20)")
+                  .style("font-weight","bold")
+                  .text("Chart 7: Market shares of Owners in Cardiff 2018");
+
+              var bedPie = new dimple.chart(svg1, data2);
+              bedPie.setBounds(0, 60, 350, 180);
+              // bedPie.addCategoryAxis("x", "Year");
+              // bedPie.addCategoryAxis("y","Type")
+              // bedPie.addMeasureAxis("z", "Beds");
+              bedPie.addMeasureAxis("p", "Place");
+              var s = bedPie.addSeries("Owner", dimple.plot.pie);
+              s.radius = 100;
+              bedPie.addLegend(350, 40, 90, 300, "left");
+
+              bedPie.draw();
+
+              var svg2 = dimple.newSvg("#doms", 440, 300)
+                              .attr("id","dom_bar");
+
+              d3.select("#dom_bar")
+                  .append('text')
+                  .attr("transform", "translate(10,20)")
+                  .style("font-weight","bold")
+                  .text("Chart 8: Number of new accommodation in Cardiff from 20001 to 2019");
+
+              var domChart = new dimple.chart(svg2, data);
+              domChart.setBounds(23, 60, 355, 180);
+              domChart.addCategoryAxis("x", "Operational");
+              domChart.addMeasureAxis("y", "Count");
+              domChart.addSeries("Status", dimple.plot.bar);
+              domChart.addSeries(null, dimple.plot.scatter);
+              domChart.addLegend(40, 50, 380, 20, "right");
+              domChart.draw();
+              ///////////////  domPie///////////////
+
+              var data2 = dimple.filterData(data,"Status",["Private"])
+              var svg1 = dimple.newSvg("#domPie", 480, 450)
+                              .attr("id","dom_pie");
+
+              d3.select("#dom_pie")
+                  .append('text')
+                  .attr("transform", "translate(10,20)")
+                  .style("font-weight","bold")
+                  .text("Chart 9: Number of accommodation in Cardiff by Owner in 2019");
+
+              var domPie = new dimple.chart(svg1, data2);
+              domPie.setBounds(25, 60, 355, 130);
+              domPie.addCategoryAxis("x", "Owner");
+              domPie.addMeasureAxis("y", "Count");
+              var s = domPie.addSeries("Operational", dimple.plot.bar);
+
+              domPie.addLegend(400, 55, 90, 300, "left");
+
+              domPie.draw();
+
+            });
+          </script>
+        </div>
+      </div>
+      <div id="domPie">  </div>
+
+      <div class="map">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1LKjdVYDVkopxhkwHjFMZpvlIgEIQD7_z" width="320" height="240"></iframe>
+      </div>
+
+      <div id="typeChart">
         <script type="text/javascript">
-          d3.csv("../data/Article 2/doms.csv", function(d) {
+          d3.csv("../data/Article 2/Type of room.csv", function(d) {
             return {
-              Block:d["Block"],
-              Owner:d["Owner"],
-              Type:d["Type"],
-              Status:d["Status"],
-              Postcode:d["Postcode"],
-              Place:d.Place,
-              Operational:d["Operational"],
-              Count:+d.Count, // convert "Numbers" column to number
+              Year: d.Year, // convert "Year" column to Date
+              Type: d["Type"],
+              Ratio: +d.Percentage // convert "Length" column to number
             };
           }, function(error, data) {
-            console.log(data);
-            var svg1 = dimple.newSvg("#bedPie", 430, 300)
-                            .attr("id","bed_pie");
+            console.log(data)
+            var svg = dimple.newSvg("#typeChart", 430, 300)
+                            .attr("id","ty_bar");
 
-            data2 = dimple.filterData(data, "Operational", ["2000*","2001","2003","2005","2009","2010","2011","2012","2014","2015","2016","2017","2018"]);
-            d3.select("#bed_pie")
+            d3.select("#ty_bar")
                 .append('text')
-                .attr("transform", "translate(60,20)")
+                .attr("transform", "translate(40,20)")
                 .style("font-weight","bold")
-                .text("Chart 7: Market shares of Owners in Cardiff 2018");
+                .text("Chart 10: Rate of different type of room (2014-2018)");
 
-            var bedPie = new dimple.chart(svg1, data2);
-            bedPie.setBounds(0, 60, 350, 180);
-            // bedPie.addCategoryAxis("x", "Year");
-            // bedPie.addCategoryAxis("y","Type")
-            // bedPie.addMeasureAxis("z", "Beds");
-            bedPie.addMeasureAxis("p", "Place");
-            var s = bedPie.addSeries("Owner", dimple.plot.pie);
-            s.radius = 100;
-            bedPie.addLegend(350, 40, 90, 300, "left");
+            var typeChart = new dimple.chart(svg, data);
+            typeChart.setBounds(60, 80, 330, 180)
+            var x = typeChart.addPctAxis("x", "Ratio");
+            var y = typeChart.addCategoryAxis("y", "Year");
+            var s = typeChart.addSeries("Type", dimple.plot.bar);
 
-            bedPie.draw();
-
-            var svg2 = dimple.newSvg("#doms", 440, 300)
-                            .attr("id","dom_bar");
-
-            d3.select("#dom_bar")
-                .append('text')
-                .attr("transform", "translate(10,20)")
-                .style("font-weight","bold")
-                .text("Chart 8: Number of new accommodation in Cardiff from 20001 to 2019");
-
-            var domChart = new dimple.chart(svg2, data);
-            domChart.setBounds(23, 60, 355, 180);
-            domChart.addCategoryAxis("x", "Operational");
-            domChart.addMeasureAxis("y", "Count");
-            domChart.addSeries("Status", dimple.plot.bar);
-            domChart.addSeries(null, dimple.plot.scatter);
-            domChart.addLegend(40, 50, 380, 20, "right");
-            domChart.draw();
-            ///////////////  domPie///////////////
-
-            var data2 = dimple.filterData(data,"Status",["Private"])
-            var svg1 = dimple.newSvg("#domPie", 480, 450)
-                            .attr("id","dom_pie");
-
-            d3.select("#dom_pie")
-                .append('text')
-                .attr("transform", "translate(10,20)")
-                .style("font-weight","bold")
-                .text("Chart 9: Number of accommodation in Cardiff by Owner in 2019");
-
-            var domPie = new dimple.chart(svg1, data2);
-            domPie.setBounds(25, 60, 355, 130);
-            domPie.addCategoryAxis("x", "Owner");
-            domPie.addMeasureAxis("y", "Count");
-            var s = domPie.addSeries("Operational", dimple.plot.bar);
-
-            domPie.addLegend(400, 55, 90, 300, "left");
-
-            domPie.draw();
-
+            s.afterDraw = function (shape, data) {
+                   // Get the shape as a d3 selection
+                var s = d3.select(shape),
+                  rect = {
+                    x: parseFloat(s.attr("x")),
+                    y: parseFloat(s.attr("y")),
+                    width: parseFloat(s.attr("width")),
+                    height: parseFloat(s.attr("height"))
+                  };
+                // Only label bars where the text can fit
+                if (rect.height >= 3) {
+                  // Add a text label for the value
+                  svg.append("text")
+                    // Position in the centre of the shape (vertical position is
+                    // manually set due to cross-browser problems with baseline)
+                    .attr("x", rect.x + rect.width / 2)
+                    .attr("y", rect.y + rect.height / 2 + 3.5)
+                    // Centre align
+                    .style("text-anchor", "middle")
+                    .style("font-size", "10px")
+                    .style("font-family", "sans-serif")
+                    // Make it a little transparent to tone down the black
+                    .style("opacity", 1)
+                    // Prevent text cursor on hover and allow tooltips
+                    .style("pointer-events", "none")
+                    // Format the number
+                    .text(d3.format(",.0f")(data.xValue) + "%");
+                }
+              }
+              typeChart.addLegend(40, 50, 380, 20, "right");
+              typeChart.draw();
           });
         </script>
       </div>
-    </div>
-    <div id="domPie">  </div>
 
-    <div class="map">
-      <iframe src="https://www.google.com/maps/d/embed?mid=1LKjdVYDVkopxhkwHjFMZpvlIgEIQD7_z" width="320" height="240"></iframe>
-    </div>
-
-    <div id="typeChart">
-      <script type="text/javascript">
-        d3.csv("../data/Article 2/Type of room.csv", function(d) {
-          return {
-            Year: d.Year, // convert "Year" column to Date
-            Type: d["Type"],
-            Ratio: +d.Percentage // convert "Length" column to number
-          };
-        }, function(error, data) {
-          console.log(data)
-          var svg = dimple.newSvg("#typeChart", 430, 300)
-                          .attr("id","ty_bar");
-
-          d3.select("#ty_bar")
-              .append('text')
-              .attr("transform", "translate(40,20)")
-              .style("font-weight","bold")
-              .text("Chart 10: Rate of different type of room (2014-2018)");
-
-          var typeChart = new dimple.chart(svg, data);
-          typeChart.setBounds(60, 80, 330, 180)
-          var x = typeChart.addPctAxis("x", "Ratio");
-          var y = typeChart.addCategoryAxis("y", "Year");
-          var s = typeChart.addSeries("Type", dimple.plot.bar);
-
-          s.afterDraw = function (shape, data) {
-                 // Get the shape as a d3 selection
-              var s = d3.select(shape),
-                rect = {
-                  x: parseFloat(s.attr("x")),
-                  y: parseFloat(s.attr("y")),
-                  width: parseFloat(s.attr("width")),
-                  height: parseFloat(s.attr("height"))
-                };
-              // Only label bars where the text can fit
-              if (rect.height >= 3) {
-                // Add a text label for the value
-                svg.append("text")
-                  // Position in the centre of the shape (vertical position is
-                  // manually set due to cross-browser problems with baseline)
-                  .attr("x", rect.x + rect.width / 2)
-                  .attr("y", rect.y + rect.height / 2 + 3.5)
-                  // Centre align
-                  .style("text-anchor", "middle")
-                  .style("font-size", "10px")
-                  .style("font-family", "sans-serif")
-                  // Make it a little transparent to tone down the black
-                  .style("opacity", 1)
-                  // Prevent text cursor on hover and allow tooltips
-                  .style("pointer-events", "none")
-                  // Format the number
-                  .text(d3.format(",.0f")(data.xValue) + "%");
-              }
-            }
-            typeChart.addLegend(40, 50, 380, 20, "right");
-            typeChart.draw();
-        });
-      </script>
-    </div>
-
-
+    </main>
 
 
   </body>

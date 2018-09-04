@@ -11,7 +11,7 @@
 
     <title>Article 1</title>
   </head>
-  <body>
+  <body id="body1">
     <input type="checkbox" id = "menu">
     <label for="menu" class="menu">
       <span></span>
@@ -27,225 +27,235 @@
         <li><a href="Article 4.html">Article 4</a></li>
       </ul>
     </nav>
+    <main>
+      <header>
+        <h2>Article 1: Demand of students </h2>
+        <h4>While the enrolment number has kept stable on 2.3m since 2013/14 for the whole of the UK, the figures of total Cardiff enrolments have dropped 10%. This tends to suggest that the stock of student housing in Cardiff will be affect to some extent.</h4>
+      </header>
+      <div class="main">
+          <h3>UK overview</h3>
+          <p>The specific policy choices made by the UK government have proved effective in that the admissions to higher education have expanded remarkably over the past few decades. Since this century, the enrolled HEIs students have steadily increased, creating the historical record of 2.5m in 2010/11. Even though the number decreased at 2012, it still held above 2.3m from 2012/13 to the last academic year 2016/17. The enrolments of HE admissions have grown 2% since 2000/01.</p>
+          <div id="main_chart">
+            <script type="text/javascript">
+              d3.csv("../data/Article 1/total.csv", function(d,i) {
+                return {
+                  Year:d["Year"],
+                  Total:d["Region"],
+                  Numbers: +d.Total // convert "Numbers" column to number
+                };
+              }, function(error, data) {
+                console.log(data);
+                var svg1 = dimple.newSvg("#main_chart", 390, 260)
+                                .attr("id","chart1");;
 
-    <div class="uk">
-      <div id="main_chart" >
-        <script type="text/javascript">
+                d3.select("#chart1")
+                    .append('text')
+                    .attr("transform", "translate(20,20)")
+                    .style("font-weight","bold")
+                    .text("Chart 1: UK HE student enrolments from 2000/01 to 2016/17");
 
-          d3.csv("../data/Article 1/total.csv", function(d,i) {
-            return {
-              Year:d["Year"],
-              Total:d["Region"],
-              Numbers: +d.Total // convert "Numbers" column to number
-            };
-          }, function(error, data) {
-            console.log(data);
-            var svg1 = dimple.newSvg("#main_chart", 430, 300)
-                            .attr("id","chart1");;
-
-            d3.select("#chart1")
-                .append('text')
-                .attr("transform", "translate(40,20)")
-                .style("font-weight","bold")
-                .text("Chart 1: UK HE student enrolments from 2000/01 to 2016/17");
-
-            var Chart1 = new dimple.chart(svg1, data);
-                Chart1.setBounds(60, 50, 350, 168)
-                var x = Chart1.addCategoryAxis("x","Year");
-                x.addOrderRule("Year");
-                Chart1.addMeasureAxis("y", "Numbers");
-                Chart1.addSeries("Total", dimple.plot.line);
-                Chart1.addSeries("Total",dimple.plot.scatter)
-            var Legend = Chart1.addLegend(360, 30, 60, 100, "left");
-                Chart1.draw();
-            x.shapes.selectAll("text").attr("transform",
-              function (d) {
-                return d3.select(this).attr("transform") + " translate(40, 60) rotate(-130)";
+                var Chart1 = new dimple.chart(svg1, data);
+                    Chart1.setBounds(50, 60, 340, 140)
+                    var x = Chart1.addCategoryAxis("x","Year");
+                    x.addOrderRule("Year");
+                    Chart1.addMeasureAxis("y", "Numbers");
+                    Chart1.addSeries("Total", dimple.plot.line);
+                    Chart1.addSeries("Total",dimple.plot.scatter)
+                var Legend = Chart1.addLegend(320, 30, 60, 100, "left");
+                    Chart1.draw();
+                x.shapes.selectAll("text").attr("transform",
+                  function (d) {
+                    return d3.select(this).attr("transform") + " translate(60, 25) rotate(-180)";
+                  });
               });
-          });
-          </script>
-      </div>
-      <div id="chart_1">
-        <script type="text/javascript" src="../Article 1.js"></script>
-      </div>
-    </div>
+              </script>
+          </div>
+          <p>Based on the latest data published by HESA below, the number of full-time students in UK Higher Education Institutions have increased from 64% in 2007/08 (1.48m) to 78% in 2016/17 (1.8m). So it can be seen that domestic students comprise the largest constituent part without doubt. The importance of non-EU students as part of the UK full-time student population should also be noticed. Here the number is increasing over time the percentage rising from 12% in 2007/08 to 15% in 2016/17, the growth rate reached 47% over the last 10 years. </p>
+          <div id="chart_1">
+            <script type="text/javascript" src="../Article 1.js"></script>
+          </div>
+          <p>The small dip in 2012/13 could arguably be impacted by the tuition fee changes as the cap on fees in England rose from £3,290 per year to £9,000 for new undergraduate students in 2012. The average headline fee in the first year of the new system was around £8,400. It has increased until now to just under £8,900 in 2016/17. Since then an apparent ‘bounce back’ in full-time students can be seen in the following years until 2016, peaked at 1.8m and created a historic record. This increase was a reflection of the rise of UK domestic full-time student, it have increased 4% in 2016/17 (1.39m) than 2015/16 (1.34m) and occupied 78% total UK full-time student. By contract, international full-time student (Non-EU and Other EU) kept the same level since 2013/14.  </p>
+          <h3>Cardiff</h3>
+          <p>As the tenth largest city in the UK, Cardiff is the capital and also the largest city in Wales. It is not only the commercial centre of Wales but also the base for national cultural, government and sporting institutions. As the educational centre of South Wales, Cardiff is home to four universities: Cardiff University, Cardiff Metropolitan University, the University of South Wales (Cardiff Campus), and the Royal Welsh College of Music and Drama. The University of South Wales was formed in 2013, it is the merger of the University of Glamorgan and the University of Wales, additionally, the student numbers of Royal Welsh College of Music and Drama have been merged with University of Glamorgan. Therefore, the figures of this this article will be just focus on the Cardiff University, Cardiff Metropolitan University and the University of South Wales.</p>
+          <div id="accChart">
+            <script type="text/javascript">
+              d3.csv("../data/Article 1/acceptance.csv",function(d) {
+                return {
+                  Year: d["Cycle Year"], // convert "Year" column to Date
+                  Application: d["Applications"],
+                  University: d["Provider Name"],
+                  App_Acc:d["App_Acceptance"],
+                  Numbers: +d["Numbers"]// convert "Length" column to number
+                };
+              }, function(error, data) {
+                console.log(data)
+                var svg = dimple.newSvg("#accChart", 575, 300)
+                                  .attr("id","acc_pie");
 
-    <div class="application">
-      <div id="accChart">
-        <script type="text/javascript">
-          d3.csv("../data/Article 1/acceptance.csv",function(d) {
-            return {
-              Year: d["Cycle Year"], // convert "Year" column to Date
-              Application: d["Applications"],
-              University: d["Provider Name"],
-              App_Acc:d["App_Acceptance"],
-              Numbers: +d["Numbers"]// convert "Length" column to number
-            };
-          }, function(error, data) {
-            console.log(data)
-            var svg = dimple.newSvg("#accChart", 575, 300)
-                              .attr("id","acc_pie");
+                d3.select("#acc_pie")
+                    .append('text')
+                    .attr("transform", "translate(15,70)")
+                    .style("font-weight","bold")
+                    .text("Chart 3: Undergraduate Applications and Acceptances by Universities in Cardiff");
 
-            d3.select("#acc_pie")
-                .append('text')
-                .attr("transform", "translate(15,70)")
-                .style("font-weight","bold")
-                .text("Chart 3: Undergraduate Applications and Acceptances by Universities in Cardiff");
+                var accChart = new dimple.chart(svg, data);
+                  accChart.setBounds(45, -200, 350, 160)
+                  accChart.addMeasureAxis("y", "Numbers");
+                  var x = accChart.addCategoryAxis("x", "Year");
+                      x.addOrderRule("Year");
+                  accChart.addMeasureAxis("p", "Numbers");
+                  var z = accChart.addMeasureAxis("z", "Numbers");
+                  var ringOne = accChart.addSeries(["Year","App_Acc"], dimple.plot.pie);
+                      ringOne.innerRadius = 17;
+                      ringOne.outerRadius = 22;
+                  var boubleOne = accChart.addSeries(["Year","Application"],dimple.plot.bouble)
+                  var lineOne = accChart.addSeries(["Application","University"],dimple.plot.line)
+                  var scatterOne = accChart.addSeries(["Year","University","App_Acc"],dimple.plot.pie)
+                  accChart.addLegend(410, 100, 100, 300, "left");
+                  accChart.draw();
+              });
+            </script>
+          </div>
+          <p>Undergraduate applications to Cardiff’s universities recovered from a dip in 2012 (reflecting wider national trends after the change of tuition fee), and reached a high of around 63,865 in 2014. However, since then the number of applications at the universities decreased to 57,970k in 2017, this is the bottom since 2011, even lower than 2012(59,195). Overall, applications have dropped 9% since 2011. However, the Universities’ applications to acceptances ratio still hovered around 21% (13,365) since 2011.  The chart below reflect the numbers of the undergraduate applications and acceptances in Cardiff from 2011 to 2017.</p>
+          <p>As a member of the Russell Group of Universities and has strong research credentials, ranked 6th in the UK overall in the 2014 Research Excellence Framework. Cardiff University still make up a half of all applicants in Cardiff. What stands out is that the number of Cardiff University applications rose to 34,590 in 2017. Although it was lower than the last three years, there was a 9% increase  since 2011 (31,625), and the acceptance rate has also increased 3%. Despite the applicants of Cardiff University  decreased 3,225, but because the 1% increase of acceptance rate, the number of acceptance was the same as the last 3 years. </p>
+          <div id="appRegion">
+            <script type="text/javascript">
+              d3.csv("../data/Article 1/region.csv", function(d) {
+                return {
+                  Year: d["Year"], // convert "Year" column to Date
+                  University: d["Provider"],
+                  Region: d["Region"],
+                  Domicile:d["Area"],
+                  App:+d.Number,
+                  // Accs: +d.Acceptance // convert "Length" column to number
+                };
+              }, function(error, data) {
+                console.log(data);
+                var svg = dimple.newSvg("#appRegion", 500, 300)
+                                .attr("id","ar_C");
 
-            var accChart = new dimple.chart(svg, data);
-              accChart.setBounds(45, -200, 350, 160)
-              accChart.addMeasureAxis("y", "Numbers");
-              var x = accChart.addCategoryAxis("x", "Year");
-                  x.addOrderRule("Year");
-              accChart.addMeasureAxis("p", "Numbers");
-              var z = accChart.addMeasureAxis("z", "Numbers");
-              var ringOne = accChart.addSeries(["Year","App_Acc"], dimple.plot.pie);
-                  ringOne.innerRadius = 17;
-                  ringOne.outerRadius = 22;
-              var boubleOne = accChart.addSeries(["Year","Application"],dimple.plot.bouble)
-              var lineOne = accChart.addSeries(["Application","University"],dimple.plot.line)
-              var scatterOne = accChart.addSeries(["Year","University","App_Acc"],dimple.plot.pie)
-              accChart.addLegend(410, 100, 100, 300, "left");
-              accChart.draw();
-          });
-        </script>
+                d3.select("#ar_C")
+                    .append('text')
+                    .attr("transform", "translate(40,70)")
+                    .style("font-weight","bold")
+                    .text("Chart 4: Undergraduate Applications by regions in Cardiff");
 
-      </div>
-      <div id="appRegion">
-        <script type="text/javascript">
-          d3.csv("../data/Article 1/region application.csv", function(d) {
-            return {
-              Year: d["Year"], // convert "Year" column to Date
-              University: d["Provider"],
-              Region: d["Region"],
-              Domicile:d["Domicile"],
-              App:+d.Applications,
-              Accs: +d.Acceptance // convert "Length" column to number
-            };
-          }, function(error, data) {
-            console.log(data);
-            var svg = dimple.newSvg("#appRegion", 500, 300)
-                            .attr("id","ar_C");
-
-            d3.select("#ar_C")
-                .append('text')
-                .attr("transform", "translate(40,70)")
-                .style("font-weight","bold")
-                .text("Chart 4: Undergraduate Applications by regions in Cardiff");
-
-            var arChart = new dimple.chart(svg, data);
-            arChart.setBounds(50, -200, 350, 160)
-            var x = arChart.addCategoryAxis("x", ["Region","Year"]);
-            x.addOrderRule("Year");
-            arChart.addMeasureAxis("y", "App");
-            arChart.addSeries("Domicile", dimple.plot.line);
-            arChart.addSeries("Domicile", dimple.plot.scatter);
-            arChart.addLegend(400, 100, 100, 300, "left");
-            arChart.draw();
-          });
-        </script>
-
-      </div>
-    </div>
-
-    <div id="enrol_t">
-
-    </div>
-
-    <div class="enrol">
-      <div id="emroChart">
-        <script type="text/javascript">
-          d3.csv("../data/Article 1/cardiff enrolment all.csv", function(d) {
-            return {
-              Year: d["Year"], // convert "Year" column to Date
-              University: d["HE provider"],
-              Enrollment:d["enrolment"],
-              Type:d["Type"],
-              Region: d["Region"],
-              Numbers: +d.Number // convert "Length" column to number
-            };
-          }, function(error, data) {
-            console.log(data);
-            var svg1 = dimple.newSvg("#enrol_t", 500, 260)
-                            .attr("id","emor_t");;
-
-            d3.select("#emor_t")
-                .append('text')
-                .attr("class","text")
-                .attr("transform", "translate(20,40)")
-                .style("font-weight","bold")
-                .text("Chart 5: Cardiff All mode HE student enrolments from 2013/14 to 2016/17");
-
-            var emroChart1 = new dimple.chart(svg1, data);
-                emroChart1.setBounds(45, 60, 350, 160)
-                var x = emroChart1.addCategoryAxis("x", "Year");
+                var arChart = new dimple.chart(svg, data);
+                arChart.setBounds(50, -200, 350, 160)
+                var x = arChart.addCategoryAxis("x", ["Year","Region"]);
                 x.addOrderRule("Year");
-                emroChart1.addMeasureAxis("y", "Numbers");
-                emroChart1.addSeries(null, dimple.plot.line);
-                emroChart1.addSeries(null,dimple.plot.scatter)
-            var emroLegend = emroChart1.addLegend(400, 100, 60, 100, "left");
-                emroChart1.draw();
-            ///////// barchart //////////
-            var svg = dimple.newSvg("#emroChart", 570, 280)
-                            .attr("id","emor_chart");;
+                arChart.addMeasureAxis("y", "App");
+                arChart.addSeries("Domicile", dimple.plot.line);
+                arChart.addSeries("Domicile", dimple.plot.scatter);
+                arChart.addLegend(400, 100, 100, 300, "left");
+                arChart.draw();
+              });
+            </script>
+          </div>
+          <p>It should be noted that the applications and acceptances outlined above are representative of those who have applied through the UCAS system only – i.e. UK and EU undergraduate students, and excludes significant numbers of international students (which have grown considerably).</p>
+          <p>From the a regional perspective, applicants from Wales have drop from 26,830 in 2011down to 20,580 in 2017,  approximately 23%. This might be the knock-on effect of removing a cap on student numbers in England. Wales students are not willing to be students in Cardiff. However, the number of  English applicants have rebound to the same level as 2011 after a dip in 2012. Additionally, number of EU students applying to Cardiff universities has fallen by 13.7% since Brexit in 2016 (3,975). However, applicants from Northern Ireland and Scotland kept at the same level over the period. This dramatic fall on the applications could arguably sustain and impact upon the student housing market in Cardiff. The demand for student accommodation might therefore decrease with the reduction of external student migrants as the figures above show.</p>
+          <div id="enrol_t"></div>
+          <p>The enrolment number has kept stable on 2.3m since 2013/14 for the whole of the UK, the figures of total Cardiff enrolments have dropped from 72,770 which comprising 20.5% of the cities’ total residents, to 66,055 in 2016/17 equating to  18.2% again of the same.  As the chart 5 shows.</p>
+          <p>However, if we breakdown the figures, a factor for the decreasing enrolment seems to be that the number of part-time students in Cardiff in 2016/17 has plummeted 32%, from 23,250 in 2010/11 to 15,745 over the last seven years. Compared to this, the 2% increase, comparing to 2011 (49,325) in the full-time students was applaudable. However, the number has dropped 1,219 since 2013/14, and this negative growth have maintained over the last four years. if the figures keep this trend in the future, this could possibly have a negative impact upon the future demand for student accommodation.</p>
+          <div id="emroChart">
+            <script type="text/javascript">
+              d3.csv("../data/Article 1/cardiff enrolment all.csv", function(d) {
+                return {
+                  Year: d["Year"], // convert "Year" column to Date
+                  University: d["HE provider"],
+                  Enrollment:d["enrolment"],
+                  Type:d["Type"],
+                  Region: d["Region"],
+                  Numbers: +d.Number // convert "Length" column to number
+                };
+              }, function(error, data) {
+                console.log(data);
+                var svg1 = dimple.newSvg("#enrol_t", 500, 260)
+                                .attr("id","emor_t");;
 
-            d3.select("#emor_chart")
-                .append('text')
-                .attr("transform", "translate(40,25)")
-                .style("font-weight","bold")
-                .text("Chart 6: Cardiff HE student enrolments by mode from 2013/14 to 2016/17");
+                d3.select("#emor_t")
+                    .append('text')
+                    .attr("class","text")
+                    .attr("transform", "translate(20,40)")
+                    .style("font-weight","bold")
+                    .text("Chart 5: Cardiff All mode HE student enrolments from 2013/14 to 2016/17");
 
-            var emroChart = new dimple.chart(svg, data);
-                emroChart.setBounds(45, 50, 350, 160)
-            var x = emroChart.addCategoryAxis("x", ["Year","Type"]);
-                x.addOrderRule("Year");
-            var y = emroChart.addMeasureAxis("y", "Numbers");
-                // emroChart.addMeasureAxis("z", "Numbers");
-            var s = emroChart.addSeries("University", dimple.plot.bar);
-                emroChart.addSeries(null, dimple.plot.bubble);
-            var emroLegend = emroChart.addLegend(400, 100, 100, 300, "left");
-                emroChart.draw();
-          });
+                var emroChart1 = new dimple.chart(svg1, data);
+                    emroChart1.setBounds(45, 60, 350, 160)
+                    var x = emroChart1.addCategoryAxis("x", "Year");
+                    x.addOrderRule("Year");
+                    emroChart1.addMeasureAxis("y", "Numbers");
+                    emroChart1.addSeries(null, dimple.plot.line);
+                    emroChart1.addSeries(null,dimple.plot.scatter)
+                var emroLegend = emroChart1.addLegend(400, 100, 60, 100, "left");
+                    emroChart1.draw();
+                ///////// barchart //////////
+                var svg = dimple.newSvg("#emroChart", 570, 280)
+                                .attr("id","emor_chart");;
 
-        </script>
+                d3.select("#emor_chart")
+                    .append('text')
+                    .attr("transform", "translate(40,25)")
+                    .style("font-weight","bold")
+                    .text("Chart 6: Cardiff HE student enrolments by mode from 2013/14 to 2016/17");
 
-      </div>
+                var emroChart = new dimple.chart(svg, data);
+                    emroChart.setBounds(45, 50, 350, 160)
+                var x = emroChart.addCategoryAxis("x", ["Year","Type"]);
+                    x.addOrderRule("Year");
+                var y = emroChart.addMeasureAxis("y", "Numbers");
+                    // emroChart.addMeasureAxis("z", "Numbers");
+                var s = emroChart.addSeries("University", dimple.plot.bar);
+                    emroChart.addSeries(null, dimple.plot.bubble);
+                var emroLegend = emroChart.addLegend(400, 100, 100, 300, "left");
+                    emroChart.draw();
+              });
 
-      <div id="full">
-        <script type="text/javascript">
-          d3.csv("../data/Article 1/cardiff full-time.csv", function(d) {
-            return {
-              Year: d["Year"], // convert "Year" column to Date
-              University: d["Provider"],
-              Region: d["Region"],
-              Numbers: +d.Number // convert "Length" column to number
-            };
-          }, function(error, data) {
-            console.log(data);
-            var svg = dimple.newSvg("#full", 570, 280)
-                            .attr("id","full_chart");;
+            </script>
 
-            d3.select("#full_chart")
-                .append('text')
-                .attr("transform", "translate(40,25)")
-                .style("font-weight","bold")
-                .text("Char 7: Cardiff full-time HE student enrolments by region from 2013/14 to 2016/17");
+          </div>
+          <p>Cardiff University attracted 24,650 full-time students in 2016/17, of 12% increase since 2013/14, made up one third of the total student population in Cardiff and double the nationally average growth rate (5.8%) over the same period. And it is the only one University that maintained the growth trend in Cardiff. It seems that full-time students in Cardiff University will be the main force in the overall student accommodation demand pool.</p>
+          <div id="full">
+            <script type="text/javascript">
+              d3.csv("../data/Article 1/cardiff full-time.csv", function(d) {
+                return {
+                  Year: d["Year"], // convert "Year" column to Date
+                  University: d["Provider"],
+                  Region: d["Region"],
+                  Numbers: +d.Number // convert "Length" column to number
+                };
+              }, function(error, data) {
+                console.log(data);
+                var svg = dimple.newSvg("#full", 570, 260)
+                                .attr("id","full_chart");;
 
-            var fullChart = new dimple.chart(svg, data);
-            fullChart.setBounds(45, 50, 350, 160)
-            var x = fullChart.addCategoryAxis("x",["Region", "Year"])
-            var y = fullChart.addMeasureAxis("y", "Numbers");
-            var s = fullChart.addSeries("University", dimple.plot.bar);
-            fullChart.addSeries(null, dimple.plot.bubble);
+                d3.select("#full_chart")
+                    .append('text')
+                    .attr("transform", "translate(40,25)")
+                    .style("font-weight","bold")
+                    .text("Char 7: Cardiff full-time HE student enrolments by region from 2013/14 to 2016/17");
 
-            fullChart.addLegend(400, 100, 100, 300, "left");
-            fullChart.draw();
+                var fullChart = new dimple.chart(svg, data);
+                fullChart.setBounds(45, 50, 350, 160)
+                var x = fullChart.addCategoryAxis("x",["Region", "Year"])
+                var y = fullChart.addMeasureAxis("y", "Numbers");
+                var s = fullChart.addSeries("University", dimple.plot.bar);
+                fullChart.addSeries(null, dimple.plot.bubble);
 
-          });
-        </script>
+                fullChart.addLegend(400, 100, 100, 300, "left");
+                fullChart.draw();
 
-      </div>
+              });
+            </script>
+
+          </div>
+          <p>The non-EU student population in Cardiff University grew by 12.7%, higher than the 6% observed nationally over the past four years (chart below). However, referring to the total non-EU students in this area, there was a 26% drop since 2013/14. Especially in Cardiff Metropolitan University, a significant 65.8% plummet, from 4,050 down to 1,385, can be seen since 2013/14. This is not positive news for student accommodation in the future.</p>
+          <p>Overall, even though Cardiff University maintains the number of applicants through and increase in the acceptance rate, it still cannot account for the decreasing demand in Cardiff Metropolitan University’s and the University of South Wales’s. In this education industry country, universities were in a very competitive market, Cardiff universities therefore might perceived inferior when comparing to some English universities. However, academic offering in terms of course ,research, and academic excellence as well as a social infrastructure. which include building programs for libraries. All in all, the decreasing demand of the student accommodation, at the moment tend to suggest that this will affect the stock of student housing to some extent.</p>
+      <!-- </section> -->
     </div>
+
+    </main>
+
 
 
 

@@ -27,7 +27,7 @@ d3.csv("../data/Article 1/full-time total.csv",function(Data){
         var margin = {
         top: 60,
         left: 60,
-        right: 90,
+        right: 120,
         bottom: 40
       };
 
@@ -41,17 +41,12 @@ d3.csv("../data/Article 1/full-time total.csv",function(Data){
 
       // title
     svg.append("text")
-        .attr("x", width / 2 )
+        .attr("x", 160 )
         .attr("y", -25)
         .attr("class","title")
         .style("text-anchor", "middle")
         .style("font-weight","bold")
         .text("Chart 2: Full-time students by level of study in the UK 2000/01 to 2016/17");
-
-
-      // var years = data.map(function(d){
-      //       return d.year;
-      // });
 
 
       var x_scale = d3.scalePoint()
@@ -113,8 +108,27 @@ d3.csv("../data/Article 1/full-time total.csv",function(Data){
          .attr("class","billion")
          .text("Number of student");
 
+       // Draw the legend
+       var legend = svg.selectAll('line_content')
+           .data(data)
+           .enter()
+           .append('g')
+           .attr('class', 'legend');
+
+          legend.append('rect')
+             .attr('x', width + 50)
+             .attr('y', function(d, i) { return height / 2 - (i + 1) * 20; })
+             .attr('width', 10)
+             .attr('height', 10)
+             .style('fill', function(d) { return z(d.id); });
+
+          legend.append('text')
+             .attr('x', width + 65)
+             .attr('y', function(d, i) { return height / 2 - (i + 1) * 20 + 10; })
+             .text(function(d) { return d.id; });
+
          //setting line
-     let line = d3.line()
+      let line = d3.line()
         .x(function(d) {return x_scale(d.year);})
         .y(function(d) {return y_scale(d.value);})
         .curve(d3.curveCatmullRom);
@@ -124,33 +138,32 @@ d3.csv("../data/Article 1/full-time total.csv",function(Data){
           .enter()
           .append("g");
 
+          // append line path to svg
+          path.append("path")
+            .attr("class", "line")
+            .attr("d", function(d){
+              return line(d.Values);
+            })
+            .attr('id',function(d){
+                return 'line-' + d.id;
+            })
+            .style("stroke", function(d) {return z(d.id);})
+            .attr("opacity", 1);
 
-      // append line path to svg
-      path.append("path")
-        .attr("class", "line")
-        .attr("d", function(d){
-          return line(d.Values);
-        })
-        .attr('id',function(d){
-            return 'line-' + d.id;
-        })
-        .style("stroke", function(d) {return z(d.id);})
-        .attr("opacity", 1);
-
-    // append line labels to svg
-        path.append("text")
-          .datum(function(d) { return {id: d.id, value: d.Values[d.Values.length - 1]}; })
-          .attr("transform", function(d) { return "translate(" + x_scale(d.value.year) + "," + y_scale(d.value.value) + ")"; })
-          .attr("x", 20)
-          .attr("dy", "0.38em")
-          .style("font", "15px sans-serif")
-          .style("fill", function(d) {return z(d.id);})
-          .attr("opacity", 1)
-          .text(function(d) { return d.id; })
-          .attr("class", "label")
-          .attr('id',function(d){
-              return 'label-' + d.id;
-          });
+        // // append line labels to svg
+        //     path.append("text")
+        //       .datum(function(d) { return {id: d.id, value: d.Values[d.Values.length - 1]}; })
+        //       .attr("transform", function(d) { return "translate(" + x_scale(d.value.year) + "," + y_scale(d.value.value) + ")"; })
+        //       .attr("x", 20)
+        //       .attr("dy", "0.38em")
+        //       .style("font", "15px sans-serif")
+        //       .style("fill", function(d) {return z(d.id);})
+        //       .attr("opacity", 1)
+        //       .text(function(d) { return d.id; })
+        //       .attr("class", "label")
+        //       .attr('id',function(d){
+        //           return 'label-' + d.id;
+        //       });
 
       // Draw the empty value for every point
       var points = svg.selectAll('.points')
@@ -180,10 +193,6 @@ d3.csv("../data/Article 1/full-time total.csv",function(Data){
        svg.select('.y.axis')
              .call(yAxis);
 
-      // d3.selectAll(".check").on("change",change);
-      // change();
-
-      //control the checkbox's opacity
     //////////////  mouseover line  //////////////////  reference: https://codepen.io/savemuse/pen/bgQQxp
     //creat the mouseover line data;
     var yyy = data.map(function(s){
@@ -217,7 +226,6 @@ d3.csv("../data/Article 1/full-time total.csv",function(Data){
       .attr('y2', height);
 
     svg.append('rect')
-      // .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
       .attr("class", "overlay")
       .attr("width", width)
       .attr("height", height)
@@ -246,7 +254,8 @@ d3.csv("../data/Article 1/full-time total.csv",function(Data){
           .attr('x', function(d) { return x_scale(di.year)+10; })
           .attr('y', function(d) { return y_scale(d.Values[i-1].value)-10; })
           .text(function(d) { return (d.Values[i-1].value/1000000).toFixed(2)+"m"; })
-          .style('fill', function(d) { return z(d.id); });
+          .style('fill', function(d) { return z(d.id); })
+          .style('font', '10px');
       }
   }
 })

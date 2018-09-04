@@ -3,7 +3,8 @@ body {
 }
 
 header {
-  padding-left: 16em;
+  padding-left: 13em;
+  padding-right: 10em;
 }
 .menu {
   position: fixed;
