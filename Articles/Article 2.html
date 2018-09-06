@@ -28,351 +28,355 @@
       </ul>
     </nav>
     <main>
-
-      <div id="ceChart">
-        <script type="text/javascript">
-          d3.csv("../data/Article 2/student acc cardiff.csv", function(d,i) {
-            return {
-              Type:d["Type"],
-              Percentage: +d["Percentage"] // convert "Numbers" column to number
-            };
-          }, function(error, data) {
-            console.log(data);
-            var svg = dimple.newSvg("#ceChart", 400, 300)
-                              .attr("id","ce");
-
-            d3.select("#ce")
-                .append('text')
-                .attr("transform", "translate(20,20)")
-                .style("font-weight","bold")
-                .text("Chart 1: Student Accommodation: Cardiff 2011");
-
-            var ceChart = new dimple.chart(svg, data);
-            ceChart.setBounds(40, 60, 300, 180)
-            var x = ceChart.addCategoryAxis("x","Type");
-            ceChart.addMeasureAxis("y", "Percentage");
-            var s = ceChart.addSeries("Type", dimple.plot.bar);
-            ceChart.addLegend(250, 60, 90, 300, "left");
-            ceChart.draw();
-            x.shapes.selectAll("text").attr("transform",
-              function (d) {
-                return d3.select(this).attr("transform") + " translate(40, 60) rotate(-150)";
-              });
-          });
-        </script>
-
-      </div>
-      <div id="hmo_year">
-        <script type="text/javascript">
-          d3.csv("../data/Article 2/Year hmo space to letting.csv", function(d,i) {
-            return {
-              Year:d["Year"],
-              Space: +d["Space"],
-              Total: +d["Total"] // convert "Numbers" column to number
-            };
-          }, function(error, data) {
-            console.log(data);
-            var svg = dimple.newSvg("#hmo_year", 450, 300)
-                              .attr("id","year");
-
-            d3.select("#year")
-                .append('text')
-                .attr("transform", "translate(20,20)")
-                .style("font-weight","bold")
-                .text("Chart 2: Romms avaiable to let in Cardiff between 2009 to 2018");
-
-            var hmoChart = new dimple.chart(svg, data);
-            hmoChart.setBounds(50, 60, 350, 180)
-            hmoChart.addCategoryAxis("x", "Year");
-            hmoChart.addMeasureAxis("y", "Total");
-            hmoChart.addSeries(null, dimple.plot.line);
-            hmoChart.addSeries(null, dimple.plot.scatter);
-            hmoChart.draw();
-
-            var svg2 = dimple.newSvg("#hmo_add", 450, 300)
-                              .attr("id","add");
-
-            d3.select("#add")
-                .append('text')
-                .attr("transform", "translate(0,20)")
-                .style("font-weight","bold")
-                .text("Chart 3: News rooms converted to let each year between 2009 to 2018");
-
-            var addChart = new dimple.chart(svg2, data);
-            addChart.setBounds(50, 60, 350, 180)
-            addChart.addCategoryAxis("x", "Year");
-            addChart.addMeasureAxis("y", "Space");
-            addChart.addSeries(null, dimple.plot.bar);
-            addChart.draw();
-
-          });
-        </script>
-      </div>
-
-
-      <div class="hmo">
-        <div id="hmo_add">
-
-        </div>
-
-        <div id="hmo_area">
+        <header>
+          <h2>Article 2: The development of student housing in Cardiff </h2>
+          <h4>Until 2018, the total space from HMO’s in Cathays and Roath, university halls and private halls reached 34,283, to accommodate approximately 101% of full-time students of Cardiff University and Cardiff Metropolitan University.</h4>
+        </header>
+        <div class="main">
+          <h4>Private Rented Accommodation</h4>
+          <p>Historically, English students housing was usually constructed alongside academic facilities in order to facilitate the share knowledge and faculty experience. However, with the boom of student populations since the end of the last century, the undersupply of university residences forced students looking for somewhere to live. In this case, family house around the institutions have become the ideal place for student to live. Thus, homes in HMO style of accommodation has been the popular domicile for students because of the geographic position. Nevertheless, with the increasing number of student occupancy in the locality, studentification has appeared in the university city. Cardiff was the typical example of such demonstrating a serious invasion of students.</p>
+          <p>The 2011 GB census data has shown the proportion of the students demand for accommodation. Of 19% students live in communal establishments which include University and Private owned Residences, 34.8% live in all-student households. With the growth of studentification, numerous landlords converted their family home to shared houses in order to pursuer the windfall profit made by the most generous consumer group - students. </p>
+          <!-- <div id="ceChart">
           <script type="text/javascript">
-            d3.csv("../data/Article 2/Area hmo space to letting.csv", function(d,i) {
+            d3.csv("../data/Article 2/student acc cardiff.csv", function(d,i) {
               return {
-                Area:d["Area"],
-                Space: +d["Space"],
-                Count: +d["Count"] // convert "Numbers" column to number
-              };
-            }, function(error, data) {
-              console.log(data);
-              var svg = dimple.newSvg("#hmo_area", 430, 300)
-                                .attr("id","area");
-
-              d3.select("#area")
-                  .append('text')
-                  .attr("transform", "translate(0,20)")
-                  .style("font-weight","bold")
-                  .text("Chart 4: Number of rooms avaiable to let in Cardiff by area 2018");
-
-              var hmoChart = new dimple.chart(svg, data);
-              hmoChart.setBounds(20, 70, 240, 180)
-              hmoChart.addMeasureAxis("p", "Space");
-              var s = hmoChart.addSeries("Area", dimple.plot.pie);
-              s.radius = 5;
-              hmoChart.addLegend(250, 20, 90, 300, "left");
-              hmoChart.draw();
-            });
-          </script>
-        </div>
-      </div>
-
-      <div class="map">
-        <iframe src="https://www.google.com/maps/d/embed?mid=1JYzbO3OBAvKd5GGhrRY-J9-9MOEawDNr" width="320" height="240"></iframe>
-      </div>
-
-      <div class="bed">
-        <div id="emro_t">
-          <script type="text/javascript">
-            d3.csv("../data/Article 1/cardiff enrolment all.csv", function(d) {
-              return {
-                Year: d["Year"], // convert "Year" column to Date
-                University: d["HE provider"],
-                Enrollment:d["enrolment"],
                 Type:d["Type"],
-                Region: d["Region"],
-                Numbers: +d.Number // convert "Length" column to number
+                Percentage: +d["Percentage"] // convert "Numbers" column to number
               };
             }, function(error, data) {
               console.log(data);
+              var svg = dimple.newSvg("#ceChart", 400, 300)
+                                .attr("id","ce");
 
-              data1 = dimple.filterData(data, "Type", ["Full-time"])
-              var svg1 = dimple.newSvg("#emro_t", 440, 300)
-                              .attr("id","emor_t");;
-
-              d3.select("#emor_t")
+              d3.select("#ce")
                   .append('text')
-                  .attr("transform", "translate(0,40)")
+                  .attr("transform", "translate(20,20)")
                   .style("font-weight","bold")
-                  .text("Chart 5: Cardiff full-time HE student enrolments between 2013/14 to 2016/17");
+                  .text("Chart 1: Student Accommodation: Cardiff 2011");
 
-              var emroChart1 = new dimple.chart(svg1, data1);
-                  emroChart1.setBounds(20, 60, 350, 180)
-                  var x = emroChart1.addCategoryAxis("x", "Year");
-                  x.addOrderRule("Year");
-                  emroChart1.addMeasureAxis("y", "Numbers");
-                  emroChart1.addSeries("Enrollment", dimple.plot.line);
-                  emroChart1.addSeries(null,dimple.plot.scatter)
-              var emroLegend = emroChart1.addLegend(560, 100, 60, 100, "left");
-                  emroChart1.draw();
-            });
-          </script>
-        </div>
-
-        <div id="domNum">
-          <script type="text/javascript">
-            d3.csv("../data/Article 2/doms count.csv", function(d,i) {
-              return {
-                Year:d["Year"],
-                Status:d["Status"],
-                Type:d["Type"],
-                Beds: +d.Beds // convert "Numbers" column to number
-              };
-            }, function(error, data) {
-              console.log(data);
-              var svg = dimple.newSvg("#domNum", 430, 300)
-                              .attr("id","num_bar");
-
-              d3.select("#num_bar")
-                  .append('text')
-                  .attr("transform", "translate(0,20)")
-                  .style("font-weight","bold")
-                  .text("Chart 6: Cardiff accommodation stock profile from 2000/01 to 2016/17");
-
-              var numChart = new dimple.chart(svg, data);
-              numChart.setBounds(30, 60, 350, 180);
-              var x = numChart.addCategoryAxis("x", "Year");
-                  x.addOrderRule("Year");
-              numChart.addMeasureAxis("y", "Beds");
-              numChart.addSeries("Status", dimple.plot.bar);
-              numChart.addSeries(null, dimple.plot.line);
-              numChart.addLegend(30, 30, 400, 20, "right");
-              numChart.draw();
-
+              var ceChart = new dimple.chart(svg, data);
+              ceChart.setBounds(40, 60, 300, 180)
+              var x = ceChart.addCategoryAxis("x","Type");
+              ceChart.addMeasureAxis("y", "Percentage");
+              var s = ceChart.addSeries("Type", dimple.plot.bar);
+              ceChart.addLegend(250, 60, 90, 300, "left");
+              ceChart.draw();
+              x.shapes.selectAll("text").attr("transform",
+                function (d) {
+                  return d3.select(this).attr("transform") + " translate(40, 60) rotate(-150)";
+                });
             });
           </script>
 
-        </div>
-
-      </div>
-
-      <div id="bedPie"> </div>
-
-      <div class="hall">
-        <div id="doms">
-          <script type="text/javascript">
-            d3.csv("../data/Article 2/doms.csv", function(d) {
-              return {
-                Block:d["Block"],
-                Owner:d["Owner"],
-                Type:d["Type"],
-                Status:d["Status"],
-                Postcode:d["Postcode"],
-                Place:d.Place,
-                Operational:d["Operational"],
-                Count:+d.Count, // convert "Numbers" column to number
-              };
-            }, function(error, data) {
-              console.log(data);
-              var svg1 = dimple.newSvg("#bedPie", 430, 300)
-                              .attr("id","bed_pie");
-
-              data2 = dimple.filterData(data, "Operational", ["2000*","2001","2003","2005","2009","2010","2011","2012","2014","2015","2016","2017","2018"]);
-              d3.select("#bed_pie")
-                  .append('text')
-                  .attr("transform", "translate(60,20)")
-                  .style("font-weight","bold")
-                  .text("Chart 7: Market shares of Owners in Cardiff 2018");
-
-              var bedPie = new dimple.chart(svg1, data2);
-              bedPie.setBounds(0, 60, 350, 180);
-              // bedPie.addCategoryAxis("x", "Year");
-              // bedPie.addCategoryAxis("y","Type")
-              // bedPie.addMeasureAxis("z", "Beds");
-              bedPie.addMeasureAxis("p", "Place");
-              var s = bedPie.addSeries("Owner", dimple.plot.pie);
-              s.radius = 100;
-              bedPie.addLegend(350, 40, 90, 300, "left");
-
-              bedPie.draw();
-
-              var svg2 = dimple.newSvg("#doms", 440, 300)
-                              .attr("id","dom_bar");
-
-              d3.select("#dom_bar")
-                  .append('text')
-                  .attr("transform", "translate(10,20)")
-                  .style("font-weight","bold")
-                  .text("Chart 8: Number of new accommodation in Cardiff from 20001 to 2019");
-
-              var domChart = new dimple.chart(svg2, data);
-              domChart.setBounds(23, 60, 355, 180);
-              domChart.addCategoryAxis("x", "Operational");
-              domChart.addMeasureAxis("y", "Count");
-              domChart.addSeries("Status", dimple.plot.bar);
-              domChart.addSeries(null, dimple.plot.scatter);
-              domChart.addLegend(40, 50, 380, 20, "right");
-              domChart.draw();
-              ///////////////  domPie///////////////
-
-              var data2 = dimple.filterData(data,"Status",["Private"])
-              var svg1 = dimple.newSvg("#domPie", 480, 450)
-                              .attr("id","dom_pie");
-
-              d3.select("#dom_pie")
-                  .append('text')
-                  .attr("transform", "translate(10,20)")
-                  .style("font-weight","bold")
-                  .text("Chart 9: Number of accommodation in Cardiff by Owner in 2019");
-
-              var domPie = new dimple.chart(svg1, data2);
-              domPie.setBounds(25, 60, 355, 130);
-              domPie.addCategoryAxis("x", "Owner");
-              domPie.addMeasureAxis("y", "Count");
-              var s = domPie.addSeries("Operational", dimple.plot.bar);
-
-              domPie.addLegend(400, 55, 90, 300, "left");
-
-              domPie.draw();
-
-            });
-          </script>
-        </div>
-      </div>
-      <div id="domPie">  </div>
-
-      <div class="map">
-        <iframe src="https://www.google.com/maps/d/embed?mid=1LKjdVYDVkopxhkwHjFMZpvlIgEIQD7_z" width="320" height="240"></iframe>
-      </div>
-
-      <div id="typeChart">
-        <script type="text/javascript">
-          d3.csv("../data/Article 2/Type of room.csv", function(d) {
-            return {
-              Year: d.Year, // convert "Year" column to Date
-              Type: d["Type"],
-              Ratio: +d.Percentage // convert "Length" column to number
-            };
-          }, function(error, data) {
-            console.log(data)
-            var svg = dimple.newSvg("#typeChart", 430, 300)
-                            .attr("id","ty_bar");
-
-            d3.select("#ty_bar")
-                .append('text')
-                .attr("transform", "translate(40,20)")
-                .style("font-weight","bold")
-                .text("Chart 10: Rate of different type of room (2014-2018)");
-
-            var typeChart = new dimple.chart(svg, data);
-            typeChart.setBounds(60, 80, 330, 180)
-            var x = typeChart.addPctAxis("x", "Ratio");
-            var y = typeChart.addCategoryAxis("y", "Year");
-            var s = typeChart.addSeries("Type", dimple.plot.bar);
-
-            s.afterDraw = function (shape, data) {
-                   // Get the shape as a d3 selection
-                var s = d3.select(shape),
-                  rect = {
-                    x: parseFloat(s.attr("x")),
-                    y: parseFloat(s.attr("y")),
-                    width: parseFloat(s.attr("width")),
-                    height: parseFloat(s.attr("height"))
+        </div> -->
+          <div class="hmo">
+            <div id="hmo_year">
+              <script type="text/javascript">
+                d3.csv("../data/Article 2/Year hmo space to letting.csv", function(d,i) {
+                  return {
+                    Year:d["Year"],
+                    Space: +d["Space"],
+                    Total: +d["Total"] // convert "Numbers" column to number
                   };
-                // Only label bars where the text can fit
-                if (rect.height >= 3) {
-                  // Add a text label for the value
-                  svg.append("text")
-                    // Position in the centre of the shape (vertical position is
-                    // manually set due to cross-browser problems with baseline)
-                    .attr("x", rect.x + rect.width / 2)
-                    .attr("y", rect.y + rect.height / 2 + 3.5)
-                    // Centre align
-                    .style("text-anchor", "middle")
-                    .style("font-size", "10px")
-                    .style("font-family", "sans-serif")
-                    // Make it a little transparent to tone down the black
-                    .style("opacity", 1)
-                    // Prevent text cursor on hover and allow tooltips
-                    .style("pointer-events", "none")
-                    // Format the number
-                    .text(d3.format(",.0f")(data.xValue) + "%");
-                }
-              }
-              typeChart.addLegend(40, 50, 380, 20, "right");
-              typeChart.draw();
-          });
-        </script>
-      </div>
+                }, function(error, data) {
+                  console.log(data);
+                  var svg = dimple.newSvg("#hmo_year", 450, 300)
+                                    .attr("id","year");
+
+                  d3.select("#year")
+                      .append('text')
+                      .attr("transform", "translate(20,20)")
+                      .style("font-weight","bold")
+                      .text("Chart 1: Romms avaiable to let in Cardiff between 2009 to 2018");
+
+                  var hmoChart = new dimple.chart(svg, data);
+                  hmoChart.setBounds(50, 60, 350, 180)
+                  hmoChart.addCategoryAxis("x", "Year");
+                  hmoChart.addMeasureAxis("y", "Total");
+                  hmoChart.addSeries(null, dimple.plot.line);
+                  hmoChart.addSeries(null, dimple.plot.scatter);
+                  hmoChart.draw();
+
+                  var svg2 = dimple.newSvg("#hmo_add", 450, 300)
+                                    .attr("id","add");
+
+                  d3.select("#add")
+                      .append('text')
+                      .attr("transform", "translate(0,20)")
+                      .style("font-weight","bold")
+                      .text("Chart 2: News rooms converted to let each year between 2009 to 2018");
+
+                  var addChart = new dimple.chart(svg2, data);
+                  addChart.setBounds(50, 60, 350, 180)
+                  addChart.addCategoryAxis("x", "Year");
+                  addChart.addMeasureAxis("y", "Space");
+                  addChart.addSeries(null, dimple.plot.bar);
+                  addChart.draw();
+
+                });
+              </script>
+            </div>
+            <div id="hmo_add"></div>
+          </div>
+          <p>The data shows the newly added available to let spaces each year from 2009 to 2018, referring to Chart 1. It is apparent from this that there was an increase of available rooms which would suggest that landlords took to converting their home. In 2016, there were 3,473 new rooms being add to the private rent market, almost 600 times compared to 2009. With the tightening up of HMO licences, the growth trend tended to slow. However, according to the data supplied by Cardiff Council, there still are 16,308 rooms that were available to let in Cardiff as of due June 2018. It is one third of the total number of full-time enrolled Cardiff HE students. </p>
+          <p>Almost 90% houses in the Cathays and Roath area are presented on the house rental market. Cathays contributed 11,119 rooms in 2,406 houses, which shared 68% market, whilst Roath was ranked second with 28% of the market share. Ian Lloyd-Davies, Media Advisor of Cardiff Council, said, “In February 2016 it was calculated that 87% of all HMO’s were in Cathays and Plasnewydd. While other people live in this type (of an) sic accommodation, in Cathays and Plasnewydd the majority of these properties are occupied by students.”</p>
+          <div class="hmo">
+            <iframe src="https://www.google.com/maps/d/embed?mid=1JYzbO3OBAvKd5GGhrRY-J9-9MOEawDNr" width="500" height="300"></iframe>
+            <div id="hmo_area">
+                  <script type="text/javascript">
+                    d3.csv("../data/Article 2/Area hmo space to letting.csv", function(d,i) {
+                      return {
+                        Area:d["Area"],
+                        Space: +d["Space"],
+                        Count: +d["Count"] // convert "Numbers" column to number
+                      };
+                    }, function(error, data) {
+                      console.log(data);
+                      var svg = dimple.newSvg("#hmo_area", 430, 300)
+                                        .attr("id","area");
+
+                      d3.select("#area")
+                          .append('text')
+                          .attr("transform", "translate(0,20)")
+                          .style("font-weight","bold")
+                          .text("Chart 3: Number of rooms avaiable to let in Cardiff by area 2018");
+
+                      var hmoChart = new dimple.chart(svg, data);
+                      hmoChart.setBounds(20, 70, 240, 180)
+                      hmoChart.addMeasureAxis("p", "Space");
+                      var s = hmoChart.addSeries("Area", dimple.plot.pie);
+                      s.radius = 5;
+                      hmoChart.addLegend(250, 20, 90, 300, "left");
+                      hmoChart.draw();
+                    });
+                  </script>
+                </div>
+          </div>
+          <h4>University and private sector accommodation</h4>
+          <p>According to the FOI data from the two Universities in Cardiff and the Cushman & Wakefield Student Accommodation Tracker, the total PBSA bed space (University and Parivate) has risen 297% from 5,391 2000/01 to 18,523 in 2017/18, and it will reach 20,749 in the next academic year.</p>
+          <div class="bed">
+            <div id="emro_t">
+              <script type="text/javascript">
+                d3.csv("../data/Article 1/cardiff enrolment all.csv", function(d) {
+                  return {
+                    Year: d["Year"], // convert "Year" column to Date
+                    University: d["HE provider"],
+                    Enrollment:d["enrolment"],
+                    Type:d["Type"],
+                    Region: d["Region"],
+                    Numbers: +d.Number // convert "Length" column to number
+                  };
+                }, function(error, data) {
+                  console.log(data);
+
+                  data1 = dimple.filterData(data, "Type", ["Full-time"])
+                  var svg1 = dimple.newSvg("#emro_t", 450, 300)
+                                  .attr("id","emor_t");;
+
+                  d3.select("#emor_t")
+                      .append('text')
+                      .attr("transform", "translate(0,20)")
+                      .style("font-weight","bold")
+                      .text("Chart 4: Cardiff full-time HE student enrolments between 2013/14 to 2016/17");
+
+                  var emroChart1 = new dimple.chart(svg1, data1);
+                      emroChart1.setBounds(45, 60, 350, 180)
+                      var x = emroChart1.addCategoryAxis("x", "Year");
+                      x.addOrderRule("Year");
+                      emroChart1.addMeasureAxis("y", "Numbers");
+                      emroChart1.addSeries("Enrollment", dimple.plot.line);
+                      emroChart1.addSeries(null,dimple.plot.scatter)
+                  var emroLegend = emroChart1.addLegend(560, 100, 60, 100, "left");
+                      emroChart1.draw();
+                });
+              </script>
+            </div>
+
+            <div id="domNum">
+              <script type="text/javascript">
+                d3.csv("../data/Article 2/doms count.csv", function(d,i) {
+                  return {
+                    Year:d["Year"],
+                    Status:d["Status"],
+                    Type:d["Type"],
+                    Beds: +d.Beds // convert "Numbers" column to number
+                  };
+                }, function(error, data) {
+                  console.log(data);
+                  var svg = dimple.newSvg("#domNum", 450, 300)
+                                  .attr("id","num_bar");
+
+                  d3.select("#num_bar")
+                      .append('text')
+                      .attr("transform", "translate(20,20)")
+                      .style("font-weight","bold")
+                      .text("Chart 5: Cardiff accommodation stock profile from 2000/01 to 2016/17");
+
+                  var numChart = new dimple.chart(svg, data);
+                  numChart.setBounds(60, 60, 350, 180);
+                  var x = numChart.addCategoryAxis("x", "Year");
+                      x.addOrderRule("Year");
+                  numChart.addMeasureAxis("y", "Beds");
+                  numChart.addSeries("Status", dimple.plot.bar);
+                  numChart.addSeries(null, dimple.plot.line);
+                  numChart.addLegend(30, 30, 400, 20, "right");
+                  numChart.draw();
+
+                });
+              </script>
+
+            </div>
+
+          </div>
+          <p>University beds across all campus based Cardiff universities accounted for 100% of the market before 2000. The vast majority of these beds (4,661) were provided by Cardiff University. Until 2011, the domination of the student housing market was predominantly from university owned accommodation. In this case, some developers have targeted this market vacancy and since then the private sector started its show in 2001 with only 288 spaces supplied by Liberty Living. </p>
+          <div id="bedPie"> </div>
+          <p>It is interesting that the trend of the increasing private PBSA beds have almost followed the trend of the full-time student population change. It can be seen, as the number of full-time students have increased rapidly between 2007/08 to 2010/11, the private PBSA started its first wave in 2009 and reached the first peak in 2011 and in this point of time the private halls have equal shares in the stock of student housing. However, the full-time student numbers have dropped slightly in 2011 and the introduction of the tuition fee changes in 2012, meant there were no new developments in the next three years. </p>
+          <p>It is unpredictable that the number of full-time students in Cardiff not only have not been affected by the changing of tuition fees but also have reached a new historic number in 2012. This trend seems have facilitated the PBSA developers. In 2013/14, the student population started to peak and the private sector resurged. During 2014, the private sector overturned the trend of university owned halls and dominated the stock of student housing. Now in 2018, the private PBSA sector in Cardiff offers the remaining 12,601 beds through 25 halls operated by ten different providers, representing 64% of the total PBSA market, and this space can accommodate 37% of the 2016/17 full-time student population. The number is still increasing, nine new PBSAs are under planning </p>
+          <div id="doms">
+              <script type="text/javascript">
+                d3.csv("../data/Article 2/doms.csv", function(d) {
+                  return {
+                    Block:d["Block"],
+                    Owner:d["Owner"],
+                    Type:d["Type"],
+                    Status:d["Status"],
+                    Postcode:d["Postcode"],
+                    Place:d.Place,
+                    Operational:d["Operational"],
+                    Count:+d.Count, // convert "Numbers" column to number
+                  };
+                }, function(error, data) {
+                  console.log(data);
+                  var svg1 = dimple.newSvg("#bedPie", 430, 280)
+                                  .attr("id","bed_pie");
+
+                  data2 = dimple.filterData(data, "Operational", ["2000*","2001","2003","2005","2009","2010","2011","2012","2014","2015","2016","2017","2018"]);
+                  d3.select("#bed_pie")
+                      .append('text')
+                      .attr("transform", "translate(60,20)")
+                      .style("font-weight","bold")
+                      .text("Chart 6: Market shares of Owners in Cardiff 2018");
+
+                  var bedPie = new dimple.chart(svg1, data2);
+                  bedPie.setBounds(0, 60, 350, 180);
+                  bedPie.addMeasureAxis("p", "Place");
+                  var s = bedPie.addSeries("Owner", dimple.plot.pie);
+                  s.radius = 100;
+                  bedPie.addLegend(350, 40, 90, 300, "left");
+
+                  bedPie.draw();
+
+                  var svg2 = dimple.newSvg("#doms", 440, 300)
+                                  .attr("id","dom_bar");
+
+                  d3.select("#dom_bar")
+                      .append('text')
+                      .attr("transform", "translate(10,10)")
+                      .style("font-weight","bold")
+                      .text("Chart 7: Number of new accommodation in Cardiff from 20001 to 2019");
+
+                  var domChart = new dimple.chart(svg2, data);
+                  domChart.setBounds(23, 60, 355, 180);
+                  domChart.addCategoryAxis("x", "Operational");
+                  domChart.addMeasureAxis("y", "Count");
+                  domChart.addSeries(["Status"], dimple.plot.bar);
+                  domChart.addSeries(null, dimple.plot.scatter);
+                  domChart.addLegend(40, 30, 380, 20, "right");
+                  domChart.draw();
+                  ///////////////  domPie///////////////
+
+                  var data2 = dimple.filterData(data,"Status",["Private"])
+                  var svg1 = dimple.newSvg("#domPie", 480, 320)
+                                  .attr("id","dom_pie");
+
+                  d3.select("#dom_pie")
+                      .append('text')
+                      .attr("transform", "translate(20,20)")
+                      .style("font-weight","bold")
+                      .text("Chart 8: Number of accommodation in Cardiff by Owner in 2019");
+
+                  var domPie = new dimple.chart(svg1, data2);
+                  domPie.setBounds(25, 60, 355, 130);
+                  domPie.addCategoryAxis("x", "Owner");
+                  domPie.addMeasureAxis("y", "Count");
+                  var s = domPie.addSeries("Operational", dimple.plot.bar);
+
+                  domPie.addLegend(400, 55, 90, 300, "left");
+
+                  domPie.draw();
+
+                });
+              </script>
+            </div>
+          <p>In recent years, the attraction of university has no longer just been focused on teaching and research merits, but also has been considered providing on the student experiences. (Macintyre 2003)Student housing has now been put on the agenda area in the university’s student service (ibid). The new buildings seems to make University an attractive choice for their potential applicants. It can be seen on Chart 8 that Cardiff University only built two new student halls in 2005 and 2014, and Cardiff Metropolitan University’s halls has been built as they get new campuses far away from the city centre.</p>
+          <p>Recently, universities are willing to and are reliant on collaboration with the private sector in the student accommodation sector (Pullan 2018). Liberty Living as the first settler of Cardiff student housing market in Cardiff, the biggest bed supplier in Cardiff. They have obtained more opportunities to collaborate with universities. They now own eight properties as 2018, sharing 23% market only rank only second to Cardiff University. Three of their halls have been co-operated with University of South Wales and one with Cardiff Metropolitan University. </p>
+          <div id="domPie">  </div>
+          <p>Beth John, Assurance Officer of Strategic Planning & Government in Cardiff University, responded that Cardiff University used to acquired additional rooms in private sector halls of residences to supplement our accommodation provision. However, the occupancy percent of these rooms have decreased from 99% in 2007 to 93% in 2017. This might be blamed to the increasing PBSA choices available in recent years.</p>
+          <p>A significant number of private student halls have been built nearby the city centre rather than alongside school facilities, this is because their new target group have changed, new generations have their own rules to choose accommodation. Accommodation, for the new generation, is not just a place for studying and sleeping, it should be a place to live (Muslim et al. 2012). Thus, environmental factors have become the key issue for evaluating the housing provided. It should be comfortable, clean, convenient and private. This the reason why new buildings usually located on the skirt of the city centre. Secondly, social activities are become more diverse, student now enjoy socialising with friend and dawn to the high street, bars and the night-time economy (ibid). </p>
+            <iframe src="https://www.google.com/maps/d/embed?mid=1LKjdVYDVkopxhkwHjFMZpvlIgEIQD7_z" width="500" height="300"></iframe>
+          <p>Previously, the most common type of accommodation is a standard room. Tenants have their own rooms but with shared bathroom and kitchen. However, today’s people tend to pay more attention to their privacy, the old type did not fit the new market. Thus, a new type of room called en-suite was designed. In this room, a private bathroom has been equipped to protect personal privacy, and flat communal kitchen being shared with no more than 7 people. As en-suite rooms have to share some spaces with other tenants but equipped with private bathroom, so the price of it is cheaper than studio. Thus, this type has been picked by both students and developers. Its market share has jumped to 76% of total market in 2015 from 6% in 2014, referring to the Chart 10. </p>
+          <div id="typeChart">
+            <script type="text/javascript">
+              d3.csv("../data/Article 2/Type of room.csv", function(d) {
+                return {
+                  Year: d.Year, // convert "Year" column to Date
+                  Type: d["Type"],
+                  Ratio: +d.Percentage // convert "Length" column to number
+                };
+              }, function(error, data) {
+                console.log(data)
+                var svg = dimple.newSvg("#typeChart", 430, 300)
+                                .attr("id","ty_bar");
+
+                d3.select("#ty_bar")
+                    .append('text')
+                    .attr("transform", "translate(80,20)")
+                    .style("font-weight","bold")
+                    .text("Chart 9: Rate of different type of room (2014-2018)");
+
+                var typeChart = new dimple.chart(svg, data);
+                typeChart.setBounds(60, 80, 330, 180)
+                var x = typeChart.addPctAxis("x", "Ratio");
+                var y = typeChart.addCategoryAxis("y", "Year");
+                var s = typeChart.addSeries("Type", dimple.plot.bar);
+
+                s.afterDraw = function (shape, data) {
+                       // Get the shape as a d3 selection
+                    var s = d3.select(shape),
+                      rect = {
+                        x: parseFloat(s.attr("x")),
+                        y: parseFloat(s.attr("y")),
+                        width: parseFloat(s.attr("width")),
+                        height: parseFloat(s.attr("height"))
+                      };
+                    // Only label bars where the text can fit
+                    if (rect.height >= 3) {
+                      // Add a text label for the value
+                      svg.append("text")
+                        // Position in the centre of the shape (vertical position is
+                        // manually set due to cross-browser problems with baseline)
+                        .attr("x", rect.x + rect.width / 2)
+                        .attr("y", rect.y + rect.height / 2 + 3.5)
+                        // Centre align
+                        .style("text-anchor", "middle")
+                        .style("font-size", "10px")
+                        .style("font-family", "sans-serif")
+                        // Make it a little transparent to tone down the black
+                        .style("opacity", 1)
+                        // Prevent text cursor on hover and allow tooltips
+                        .style("pointer-events", "none")
+                        // Format the number
+                        .text(d3.format(",.0f")(data.xValue) + "%");
+                    }
+                  }
+                  typeChart.addLegend(40, 50, 380, 20, "right");
+                  typeChart.draw();
+              });
+            </script>
+          </div>
+          <p>Same as en-suite, studio rooms has also been payed more attention by developers again since 2015. Typically, as studios integrated the kitchen-diner and bedroom in a same space, the price is cheaper than one bed bedroom apartment. Thus, this type of accommodation are more likely to target single young professionals or who can afford the price and tend to live alone, and now, richer students are tends to live in studios (House network 2016). In the last four years, referring to Chart 10, the market share of studio has increased 10% even it still account a slightly weight of the whole PBSA market. However, this increase was depend on the student demand. As Cushman & Wakefield (2017) stated that the occupancy issues concerning on that a number of developments could prove that the increasing numbers of studio development “has been driven by land cost”, </p>
+          <p>Overall, there is a boom in the Cardiff student housing market. Until 2018, the total space from HMO in Cathays and Roath, university halls and private halls reached 34,283, to accommodate approximately 101% full-time students of Cardiff University and Cardiff Metropolitan University. It tends to suggested that the supplement of student accommodation will be overapplied in the future.</p>
+        </div>
 
     </main>
 

@@ -1,145 +1,85 @@
 ﻿Year,Provider,Region,Area,Number
 2011,Cardiff University,UK,England,16780
-2011,"University of South Wales (formerly University of Wales, Newport)",UK,England,2210
-2011,University of South Wales (formerly University of Glamorgan),UK,England,4490
 2011,Cardiff Metropolitan University,UK,England,4625
 2012,Cardiff University,UK,England,15855
-2012,"University of South Wales (formerly University of Wales, Newport)",UK,England,1840
 2012,Cardiff Metropolitan University,UK,England,3430
-2012,University of South Wales (formerly University of Glamorgan),UK,England,4115
-2013,"University of South Wales (formerly University of Wales, Newport)",UK,England,1290
 2013,Cardiff University,UK,England,18560
-2013,University of South Wales (formerly University of Glamorgan),UK,England,4050
 2013,Cardiff Metropolitan University,UK,England,4135
 2014,Cardiff University,UK,England,21075
-2014,University of South Wales,UK,England,4125
 2014,Cardiff Metropolitan University,UK,England,4825
 2015,Cardiff University,UK,England,20730
-2015,University of South Wales,UK,England,3990
 2015,Cardiff Metropolitan University,UK,England,4625
 2016,Cardiff University,UK,England,20670
-2016,University of South Wales,UK,England,4125
 2016,Cardiff Metropolitan University,UK,England,4210
 2017,Cardiff University,UK,England,19020
 2017,Cardiff Metropolitan University,UK,England,4245
-2017,University of South Wales,UK,England,4320
-2011,"University of South Wales (formerly University of Wales, Newport)",Non-UK,EU (excluding UK),190
 2011,Cardiff Metropolitan University,Non-UK,EU (excluding UK),405
-2011,University of South Wales (formerly University of Glamorgan),Non-UK,EU (excluding UK),575
 2011,Cardiff University,Non-UK,EU (excluding UK),1755
-2012,"University of South Wales (formerly University of Wales, Newport)",Non-UK,EU (excluding UK),115
 2012,Cardiff Metropolitan University,Non-UK,EU (excluding UK),315
-2012,University of South Wales (formerly University of Glamorgan),Non-UK,EU (excluding UK),690
 2012,Cardiff University,Non-UK,EU (excluding UK),1435
-2013,"University of South Wales (formerly University of Wales, Newport)",Non-UK,EU (excluding UK),65
 2013,Cardiff Metropolitan University,Non-UK,EU (excluding UK),275
-2013,University of South Wales (formerly University of Glamorgan),Non-UK,EU (excluding UK),830
 2013,Cardiff University,Non-UK,EU (excluding UK),1745
 2014,Cardiff Metropolitan University,Non-UK,EU (excluding UK),380
-2014,University of South Wales,Non-UK,EU (excluding UK),945
 2014,Cardiff University,Non-UK,EU (excluding UK),2000
 2015,Cardiff Metropolitan University,Non-UK,EU (excluding UK),325
-2015,University of South Wales,Non-UK,EU (excluding UK),1225
 2015,Cardiff University,Non-UK,EU (excluding UK),2080
 2016,Cardiff Metropolitan University,Non-UK,EU (excluding UK),370
-2016,University of South Wales,Non-UK,EU (excluding UK),1370
 2016,Cardiff University,Non-UK,EU (excluding UK),2235
 2017,Cardiff Metropolitan University,Non-UK,EU (excluding UK),320
-2017,University of South Wales,Non-UK,EU (excluding UK),1225
 2017,Cardiff University,Non-UK,EU (excluding UK),1885
 2011,Cardiff Metropolitan University,UK,Northern Ireland,100
-2011,University of South Wales (formerly University of Glamorgan),UK,Northern Ireland,105
 2011,Cardiff University,UK,Northern Ireland,560
-2011,"University of South Wales (formerly University of Wales, Newport)",UK,Northern Ireland,70
 2012,Cardiff University,UK,Northern Ireland,450
-2012,"University of South Wales (formerly University of Wales, Newport)",UK,Northern Ireland,60
 2012,Cardiff Metropolitan University,UK,Northern Ireland,65
-2012,University of South Wales (formerly University of Glamorgan),UK,Northern Ireland,95
-2013,University of South Wales (formerly University of Glamorgan),UK,Northern Ireland,110
 2013,Cardiff University,UK,Northern Ireland,435
-2013,"University of South Wales (formerly University of Wales, Newport)",UK,Northern Ireland,70
 2013,Cardiff Metropolitan University,UK,Northern Ireland,95
-2014,University of South Wales,UK,Northern Ireland,105
 2014,Cardiff Metropolitan University,UK,Northern Ireland,120
 2014,Cardiff University,UK,Northern Ireland,440
 2015,Cardiff University,UK,Northern Ireland,445
-2015,University of South Wales,UK,Northern Ireland,90
 2015,Cardiff Metropolitan University,UK,Northern Ireland,95
 2016,Cardiff Metropolitan University,UK,Northern Ireland,100
-2016,University of South Wales,UK,Northern Ireland,120
 2016,Cardiff University,UK,Northern Ireland,585
-2017,University of South Wales,UK,Northern Ireland,140
 2017,Cardiff University,UK,Northern Ireland,450
 2017,Cardiff Metropolitan University,UK,Northern Ireland,75
-2011,"University of South Wales (formerly University of Wales, Newport)",Non-UK,Not EU,85
 2011,Cardiff Metropolitan University,Non-UK,Not EU,250
-2011,University of South Wales (formerly University of Glamorgan),Non-UK,Not EU,375
 2011,Cardiff University,Non-UK,Not EU,3910
-2012,"University of South Wales (formerly University of Wales, Newport)",Non-UK,Not EU,85
 2012,Cardiff Metropolitan University,Non-UK,Not EU,195
-2012,University of South Wales (formerly University of Glamorgan),Non-UK,Not EU,365
 2012,Cardiff University,Non-UK,Not EU,4310
-2013,"University of South Wales (formerly University of Wales, Newport)",Non-UK,Not EU,90
 2013,Cardiff Metropolitan University,Non-UK,Not EU,225
-2013,University of South Wales (formerly University of Glamorgan),Non-UK,Not EU,385
 2013,Cardiff University,Non-UK,Not EU,5175
 2014,Cardiff Metropolitan University,Non-UK,Not EU,270
-2014,University of South Wales,Non-UK,Not EU,305
 2014,Cardiff University,Non-UK,Not EU,6185
 2015,Cardiff Metropolitan University,Non-UK,Not EU,235
-2015,University of South Wales,Non-UK,Not EU,375
 2015,Cardiff University,Non-UK,Not EU,6025
 2016,Cardiff Metropolitan University,Non-UK,Not EU,265
-2016,University of South Wales,Non-UK,Not EU,345
 2016,Cardiff University,Non-UK,Not EU,5540
 2017,Cardiff Metropolitan University,Non-UK,Not EU,275
-2017,University of South Wales,Non-UK,Not EU,355
 2017,Cardiff University,Non-UK,Not EU,4950
-2011,"University of South Wales (formerly University of Wales, Newport)",UK,Scotland,10
 2011,Cardiff University,UK,Scotland,130
 2011,Cardiff Metropolitan University,UK,Scotland,30
-2011,University of South Wales (formerly University of Glamorgan),UK,Scotland,30
 2012,Cardiff Metropolitan University,UK,Scotland,10
-2012,"University of South Wales (formerly University of Wales, Newport)",UK,Scotland,10
-2012,University of South Wales (formerly University of Glamorgan),UK,Scotland,25
 2012,Cardiff University,UK,Scotland,90
-2013,"University of South Wales (formerly University of Wales, Newport)",UK,Scotland,10
 2013,Cardiff Metropolitan University,UK,Scotland,15
-2013,University of South Wales (formerly University of Glamorgan),UK,Scotland,30
 2013,Cardiff University,UK,Scotland,90
 2014,Cardiff University,UK,Scotland,105
 2014,Cardiff Metropolitan University,UK,Scotland,15
-2014,University of South Wales,UK,Scotland,30
 2015,Cardiff University,UK,Scotland,105
 2015,Cardiff Metropolitan University,UK,Scotland,20
-2015,University of South Wales,UK,Scotland,20
 2016,Cardiff Metropolitan University,UK,Scotland,15
-2016,University of South Wales,UK,Scotland,25
 2016,Cardiff University,UK,Scotland,90
 2017,Cardiff Metropolitan University,UK,Scotland,15
-2017,University of South Wales,UK,Scotland,30
 2017,Cardiff University,UK,Scotland,85
-2011,"University of South Wales (formerly University of Wales, Newport)",UK,Wales,3360
 2011,Cardiff Metropolitan University,UK,Wales,5280
 2011,Cardiff University,UK,Wales,8490
-2011,University of South Wales (formerly University of Glamorgan),UK,Wales,9700
-2012,"University of South Wales (formerly University of Wales, Newport)",UK,Wales,3260
 2012,Cardiff Metropolitan University,UK,Wales,4680
 2012,Cardiff University,UK,Wales,8200
-2012,University of South Wales (formerly University of Glamorgan),UK,Wales,9500
-2013,"University of South Wales (formerly University of Wales, Newport)",UK,Wales,2445
 2013,Cardiff Metropolitan University,UK,Wales,4460
 2013,Cardiff University,UK,Wales,8180
-2013,University of South Wales (formerly University of Glamorgan),UK,Wales,8825
 2014,Cardiff Metropolitan University,UK,Wales,4665
 2014,Cardiff University,UK,Wales,8495
-2014,University of South Wales,UK,Wales,9775
 2015,Cardiff Metropolitan University,UK,Wales,4595
 2015,Cardiff University,UK,Wales,8480
-2015,University of South Wales,UK,Wales,8925
 2016,Cardiff Metropolitan University,UK,Wales,4480
-2016,University of South Wales,UK,Wales,8555
 2016,Cardiff University,UK,Wales,8695
 2017,Cardiff Metropolitan University,UK,Wales,4350
-2017,University of South Wales,UK,Wales,8035
 2017,Cardiff University,UK,Wales,8200

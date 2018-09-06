@@ -7,10 +7,6 @@
 2015,Cardiff University,UK,England,20730,3195
 2016,Cardiff University,UK,England,20670,3570
 2017,Cardiff University,UK,England,19020,3615
-2014,University of South Wales,UK,England,4125,940
-2015,University of South Wales,UK,England,3990,875
-2016,University of South Wales,UK,England,4125,860
-2017,University of South Wales,UK,England,4320,875
 2014,Cardiff University,Non-UK,EU (excluding UK) ,2000,270
 2015,Cardiff University,Non-UK,EU (excluding UK) ,2080,305
 2016,Cardiff University,Non-UK,EU (excluding UK) ,2235,315
@@ -19,10 +15,6 @@
 2015,Cardiff Metropolitan University,Non-UK,EU (excluding UK) ,325,115
 2016,Cardiff Metropolitan University,Non-UK,EU (excluding UK) ,370,105
 2017,Cardiff Metropolitan University,Non-UK,EU (excluding UK) ,320,90
-2014,University of South Wales,Non-UK,EU (excluding UK) ,945,230
-2015,University of South Wales,Non-UK,EU (excluding UK) ,1225,250
-2016,University of South Wales,Non-UK,EU (excluding UK) ,1370,250
-2017,University of South Wales,Non-UK,EU (excluding UK) ,1225,250
 2014,Cardiff Metropolitan University,UK,Northern Ireland,120,20
 2015,Cardiff Metropolitan University,UK,Northern Ireland,95,20
 2016,Cardiff Metropolitan University,UK,Northern Ireland,100,15
@@ -31,10 +23,6 @@
 2015,Cardiff University,UK,Northern Ireland,445,35
 2016,Cardiff University,UK,Northern Ireland,585,50
 2017,Cardiff University,UK,Northern Ireland,450,55
-2014,University of South Wales,UK,Northern Ireland,105,20
-2015,University of South Wales,UK,Northern Ireland,90,15
-2016,University of South Wales,UK,Northern Ireland,120,15
-2017,University of South Wales,UK,Northern Ireland,140,25
 2014,Cardiff University,Non-UK,Not EU ,6185,755
 2015,Cardiff University,Non-UK,Not EU ,6025,775
 2016,Cardiff University,Non-UK,Not EU ,5540,745
@@ -43,10 +31,6 @@
 2015,Cardiff Metropolitan University,Non-UK,Not EU ,235,260
 2016,Cardiff Metropolitan University,Non-UK,Not EU ,265,260
 2017,Cardiff Metropolitan University,Non-UK,Not EU ,275,315
-2014,University of South Wales,Non-UK,Not EU ,305,65
-2015,University of South Wales,Non-UK,Not EU ,375,55
-2016,University of South Wales,Non-UK,Not EU ,345,35
-2017,University of South Wales,Non-UK,Not EU ,355,50
 2014,Cardiff Metropolitan University,UK,Scotland,15,5
 2015,Cardiff Metropolitan University,UK,Scotland,20,5
 2016,Cardiff Metropolitan University,UK,Scotland,15,10
@@ -55,10 +39,6 @@
 2015,Cardiff University,UK,Scotland,105,10
 2016,Cardiff University,UK,Scotland,90,10
 2017,Cardiff University,UK,Scotland,85,10
-2014,University of South Wales,UK,Scotland,30,10
-2015,University of South Wales,UK,Scotland,20,5
-2016,University of South Wales,UK,Scotland,25,5
-2017,University of South Wales,UK,Scotland,30,5
 2014,Cardiff Metropolitan University,UK,Wales,4665,1590
 2015,Cardiff Metropolitan University,UK,Wales,4595,1550
 2016,Cardiff Metropolitan University,UK,Wales,4480,1475
@@ -67,7 +47,3 @@
 2015,Cardiff University,UK,Wales,8480,1955
 2016,Cardiff University,UK,Wales,8695,2085
 2017,Cardiff University,UK,Wales,8200,1970
-2014,University of South Wales,UK,Wales,9775,2935
-2015,University of South Wales,UK,Wales,8925,2790
-2016,University of South Wales,UK,Wales,8555,2460
-2017,University of South Wales,UK,Wales,8035,2480

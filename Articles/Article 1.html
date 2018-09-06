@@ -30,7 +30,7 @@
     <main>
       <header>
         <h2>Article 1: Demand of students </h2>
-        <h4>While the enrolment number has kept stable on 2.3m since 2013/14 for the whole of the UK, the figures of total Cardiff enrolments have dropped 10%. This tends to suggest that the stock of student housing in Cardiff will be affect to some extent.</h4>
+        <h4>While the enrolment number has kept stable on 2.3m since 2013/14 for the whole of the UK, the figures of total Cardiff enrolments have dropped 2.2%. This tends to suggest that the stock of student housing in Cardiff will be affected to some extent.</h4>
       </header>
       <div class="main">
           <h3>UK overview</h3>
@@ -108,7 +108,7 @@
                   var ringOne = accChart.addSeries(["Year","App_Acc"], dimple.plot.pie);
                       ringOne.innerRadius = 17;
                       ringOne.outerRadius = 22;
-                  var boubleOne = accChart.addSeries(["Year","Application"],dimple.plot.bouble)
+                  var boubleOne = accChart.addSeries(["Year","University"],dimple.plot.pie)
                   var lineOne = accChart.addSeries(["Application","University"],dimple.plot.line)
                   var scatterOne = accChart.addSeries(["Year","University","App_Acc"],dimple.plot.pie)
                   accChart.addLegend(410, 100, 100, 300, "left");
@@ -178,8 +178,9 @@
                     .attr("class","text")
                     .attr("transform", "translate(20,40)")
                     .style("font-weight","bold")
-                    .text("Chart 5: Cardiff All mode HE student enrolments from 2013/14 to 2016/17");
+                    .text("Chart 5: Cardiff All mode HE student enrolments from 2010/11 to 2016/17");
 
+                var data = dimple.filterData(data, "Year",["2010/11","2011/12","2012/13","2013/14","2014/15","2015/16","2016/17"])
                 var emroChart1 = new dimple.chart(svg1, data);
                     emroChart1.setBounds(45, 60, 350, 160)
                     var x = emroChart1.addCategoryAxis("x", "Year");
@@ -190,16 +191,16 @@
                 var emroLegend = emroChart1.addLegend(400, 100, 60, 100, "left");
                     emroChart1.draw();
                 ///////// barchart //////////
-                var svg = dimple.newSvg("#emroChart", 570, 280)
+                var svg2 = dimple.newSvg("#emroChart", 570, 280)
                                 .attr("id","emor_chart");;
 
                 d3.select("#emor_chart")
                     .append('text')
                     .attr("transform", "translate(40,25)")
                     .style("font-weight","bold")
-                    .text("Chart 6: Cardiff HE student enrolments by mode from 2013/14 to 2016/17");
+                    .text("Chart 6: Cardiff HE student enrolments by mode from 2010/11 to 2016/17");
 
-                var emroChart = new dimple.chart(svg, data);
+                var emroChart = new dimple.chart(svg2, data);
                     emroChart.setBounds(45, 50, 350, 160)
                 var x = emroChart.addCategoryAxis("x", ["Year","Type"]);
                     x.addOrderRule("Year");
@@ -237,9 +238,10 @@
 
                 var fullChart = new dimple.chart(svg, data);
                 fullChart.setBounds(45, 50, 350, 160)
-                var x = fullChart.addCategoryAxis("x",["Region", "Year"])
+                var x = fullChart.addCategoryAxis("x", ["Region","Year"])
+                x.addGroupOrderRule(["Year","Year"]);
                 var y = fullChart.addMeasureAxis("y", "Numbers");
-                var s = fullChart.addSeries("University", dimple.plot.bar);
+                var s = fullChart.addSeries(["University"], dimple.plot.bar);
                 fullChart.addSeries(null, dimple.plot.bubble);
 
                 fullChart.addLegend(400, 100, 100, 300, "left");
@@ -250,8 +252,41 @@
 
           </div>
           <p>The non-EU student population in Cardiff University grew by 12.7%, higher than the 6% observed nationally over the past four years (chart below). However, referring to the total non-EU students in this area, there was a 26% drop since 2013/14. Especially in Cardiff Metropolitan University, a significant 65.8% plummet, from 4,050 down to 1,385, can be seen since 2013/14. This is not positive news for student accommodation in the future.</p>
-          <p>Overall, even though Cardiff University maintains the number of applicants through and increase in the acceptance rate, it still cannot account for the decreasing demand in Cardiff Metropolitan University’s and the University of South Wales’s. In this education industry country, universities were in a very competitive market, Cardiff universities therefore might perceived inferior when comparing to some English universities. However, academic offering in terms of course ,research, and academic excellence as well as a social infrastructure. which include building programs for libraries. All in all, the decreasing demand of the student accommodation, at the moment tend to suggest that this will affect the stock of student housing to some extent.</p>
-      <!-- </section> -->
+          <!-- <div id="cardiff">
+            <script type="text/javascript">
+              d3.csv("../data/Article 1/cardiff out.csv", function(d) {
+                return {
+                  Year: d["Year"], // convert "Year" column to Date
+                  Region: d["Region"],
+                  Domicile: d["Region of HE provider"],
+                  Numbers: +d.Number // convert "Length" column to number
+                };
+              }, function(error, data) {
+                console.log(data);
+                var svg = dimple.newSvg("#cardiff", 570, 260)
+                                .attr("id","car_chart");;
+
+                d3.select("#car_chart")
+                    .append('text')
+                    .attr("transform", "translate(40,25)")
+                    .style("font-weight","bold")
+                    .text("Char 8: Catdiff HE student enrolments by domicile and region of HE provider 2010/11 to 2016/17");
+
+                var carChart = new dimple.chart(svg, data);
+                carChart.setBounds(45, 50, 350, 160)
+                var x = carChart.addCategoryAxis("x","Year")
+                x.addOrderRule("Year");
+                var y = carChart.addMeasureAxis("y", "Numbers");
+                var s = carChart.addSeries("Region", dimple.plot.line);
+
+                carChart.addLegend(400, 100, 100, 300, "left");
+                carChart.draw();
+
+              });
+            </script>
+
+          </div> -->
+          <p>Overall, even though Cardiff University maintains the number of applicants through and increase in the acceptance rate, it still cannot account for the decreasing demand in Cardiff Metropolitan University’s. In this education industry country, universities were in a very competitive market, Cardiff universities therefore might be perceived as an inferior when compared to some English universities which have removed the cap of student numbers. All in all, the decreasing demand of the student accommodation, at the moment tend to suggest that this will affect the stock of student housing to some extent.</p>
     </div>
 
     </main>

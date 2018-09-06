@@ -2,10 +2,6 @@ body {
   background-color: #999;
 }
 
-header {
-  padding-left: 13em;
-  padding-right: 10em;
-}
 .menu {
   position: fixed;
   top: 20px;
@@ -74,7 +70,7 @@ header {
 .nav {
   position: fixed;
   top: 0;
-  left: -3000px;
+  left: -300px;
   width: 300px;
   height: 100vh;
   margin: 0;
