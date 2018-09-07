@@ -121,8 +121,8 @@
           <p>The data shows the newly added available to let spaces each year from 2009 to 2018, referring to Chart 1. It is apparent from this that there was an increase of available rooms which would suggest that landlords took to converting their home. In 2016, there were 3,473 new rooms being add to the private rent market, almost 600 times compared to 2009. With the tightening up of HMO licences, the growth trend tended to slow. However, according to the data supplied by Cardiff Council, there still are 16,308 rooms that were available to let in Cardiff as of due June 2018. It is one third of the total number of full-time enrolled Cardiff HE students. </p>
           <p>Almost 90% houses in the Cathays and Roath area are presented on the house rental market. Cathays contributed 11,119 rooms in 2,406 houses, which shared 68% market, whilst Roath was ranked second with 28% of the market share. Ian Lloyd-Davies, Media Advisor of Cardiff Council, said, “In February 2016 it was calculated that 87% of all HMO’s were in Cathays and Plasnewydd. While other people live in this type (of an) sic accommodation, in Cathays and Plasnewydd the majority of these properties are occupied by students.”</p>
           <div class="hmo">
-            <iframe src="https://www.google.com/maps/d/embed?mid=1JYzbO3OBAvKd5GGhrRY-J9-9MOEawDNr" width="500" height="300"></iframe>
-            <div id="hmo_area">
+            <iframe class="sub" src="https://www.google.com/maps/d/embed?mid=1JYzbO3OBAvKd5GGhrRY-J9-9MOEawDNr" width="500" height="300"></iframe>
+            <div id="hmo_area" class="sub">
                   <script type="text/javascript">
                     d3.csv("../data/Article 2/Area hmo space to letting.csv", function(d,i) {
                       return {
@@ -155,7 +155,7 @@
           <h4>University and private sector accommodation</h4>
           <p>According to the FOI data from the two Universities in Cardiff and the Cushman & Wakefield Student Accommodation Tracker, the total PBSA bed space (University and Parivate) has risen 297% from 5,391 2000/01 to 18,523 in 2017/18, and it will reach 20,749 in the next academic year.</p>
           <div class="bed">
-            <div id="emro_t">
+            <div id="emro_t" class ="sub">
               <script type="text/javascript">
                 d3.csv("../data/Article 1/cardiff enrolment all.csv", function(d) {
                   return {
@@ -191,8 +191,7 @@
                 });
               </script>
             </div>
-
-            <div id="domNum">
+            <div id="domNum" class = "sub">
               <script type="text/javascript">
                 d3.csv("../data/Article 2/doms count.csv", function(d,i) {
                   return {
@@ -266,17 +265,17 @@
 
                   bedPie.draw();
 
-                  var svg2 = dimple.newSvg("#doms", 440, 300)
+                  var svg2 = dimple.newSvg("#doms", 480, 320)
                                   .attr("id","dom_bar");
 
                   d3.select("#dom_bar")
                       .append('text')
-                      .attr("transform", "translate(10,10)")
+                      .attr("transform", "translate(20,10)")
                       .style("font-weight","bold")
                       .text("Chart 7: Number of new accommodation in Cardiff from 20001 to 2019");
 
                   var domChart = new dimple.chart(svg2, data);
-                  domChart.setBounds(23, 60, 355, 180);
+                  domChart.setBounds(40, 60, 355, 180);
                   domChart.addCategoryAxis("x", "Operational");
                   domChart.addMeasureAxis("y", "Count");
                   domChart.addSeries(["Status"], dimple.plot.bar);
@@ -291,12 +290,12 @@
 
                   d3.select("#dom_pie")
                       .append('text')
-                      .attr("transform", "translate(20,20)")
+                      .attr("transform", "translate(50,20)")
                       .style("font-weight","bold")
                       .text("Chart 8: Number of accommodation in Cardiff by Owner in 2019");
 
                   var domPie = new dimple.chart(svg1, data2);
-                  domPie.setBounds(25, 60, 355, 130);
+                  domPie.setBounds(40, 60, 355, 130);
                   domPie.addCategoryAxis("x", "Owner");
                   domPie.addMeasureAxis("y", "Count");
                   var s = domPie.addSeries("Operational", dimple.plot.bar);

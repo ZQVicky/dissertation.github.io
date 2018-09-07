@@ -52,7 +52,7 @@
                     .append('text')
                     .attr("transform", "translate(50,20)")
                     .style("font-weight","bold")
-                    .text("Student tenure types 2008/09 and 2016/17, per cent");
+                    .text("Chart 1: Student tenure types 2008/09 and 2016/17, per cent");
 
                 var propChart = new dimple.chart(svg, data);
                 propChart.setBounds(100, -210, 300, 170)
@@ -103,21 +103,21 @@
         <p>Even though the PBSA market grew fast, the market still is dominated by HMOs since most private halls are located by the city centre rather than by school facilities. Ross, works in the Residence Office of Cardiff University, explained that students generally prefer en-suite, self-catered accommodation but prefer to live closer to their school of study. Living close to the city centre seems to be a secondary consideration for students. Thereby, the developers try to improve the qualities of the infrastructure in order to offset the disadvantage of long-distance commutes to university.</p>
         <p>Here's just a selection of PBSAs in Cardiff and the offers of each one compared to HMOs. As can be seen most PBSAs have perfect living facilities. However, it can be seen that the price is one third higher or even double than the traditional shared house, posing the question as to whether it is affordable for students.</p>
         <img src="../img/selected private.png" alt="">
-        <p>Douglas Haig, the Vice Chairman and Director for Wales of the Residential Landlords Association (WRLA), has told Wales Online:</p>
+        <h5>Douglas Haig, the Vice Chairman and Director for Wales of the Residential Landlords Association (WRLA), has told Wales Online:</h5>
         <p>“Strong university cities like Cardiff provide a regular, consistent and highly reliable source of tenants. Good universities attract better quality tenants, especially overseas students, that are often (not always) wealthier as the higher fees they have to pay compare to local students will often rule out others coming to the UK in the first place.”</p>
         <p>“They are also more likely to pay a premium for their rent for a hotel-style property and are more attracted to living alone or in small units as they tend not to know anyone when arriving in the country.”</p>
         <p>Recently, the developers tend to build luxury student accommodation, most of them only supply studios or linked- studios, in order to attract students who come from overseas with high requirements on living experiences. Because this group usually bring huge disposable incomes and are able to afford the high price. Except the basic facilities, those building are usually equipped with quiet study rooms, games rooms, common rooms, gyms and even TV rooms. </p>
         <div id="priceChart">
           <script type="text/javascript">
             d3.csv("../data/Article 3/price.csv", function (data) {
-              var svg = dimple.newSvg("#priceChart", 430, 300)
+              var svg = dimple.newSvg("#priceChart", 430, 260)
                               .attr("id","pr_line");
 
             d3.select("#pr_line")
                 .append('text')
                 .attr("transform", "translate(40,16)")
                 .style("font-weight","bold")
-                .text("Chart 2: Average price of Studio and En-suit (2014-2018)");
+                .text("Chart 2: Average price of Studio and En-suite (2014-2018)");
 
               var priceChart = new dimple.chart(svg, data);
               priceChart.setBounds(50, 60, 350, 165);
@@ -132,16 +132,17 @@
           </script>
 
         </div>
-        <p>Recently, the developers tend to build luxury student accommodation, most of them only supply studios or linked- studios, in order to attract students who come from overseas with high requirements on living experiences. Because this group usually bring huge disposable incomes and are able to afford the high price. Except the basic facilities, those building are usually equipped with quiet study rooms, games rooms, common rooms, gyms and even TV rooms. </p>
+        <p>Based on the higher standard of service and facilities, the price of studio probably is twice that of an en-suite, the average price reached £171 per week, the highest one reached £287 per week in Windsor House called “Conran Shop Executive Deluxe Studio”. Tenant in this room can enjoy the latest furnishings handpicked by Conran Shop, and furniture also with such high prices. It is incredibly that this type of room have been sold out in the early 2018/19 academic year.</p>
         <img src="../img/windsor1.png" alt="">
         <img src="../img/windsor2.png" alt="">
         <p>Last year, some students in Cardiff have got into financial trouble as they took out credit cards and loans in order to afford the “luxury” rooms.</p>
-        <p>Zhanjun Zhang, a student in Cardiff University Business School, who occupied one of PBSA in her first-year before opting for a four-bedroom shared house this year, but moved back to the PBSA in the summer period, believes much of the PBSA being offered is overplayed and underused, and the price was not worth the living experience.</p>
+        <h5>Zhanjun Zhang, a student in Cardiff University Business School, who occupied one of PBSA in her first-year before opting for a four-bedroom shared house this year, but moved back to the PBSA in the summer period, believes much of the PBSA being offered is overplayed and underused, and the price was not worth the living experience.</h5>
         <p>"I lived in the PBSA when I first came to here because there was no way to find a shared house before coming to Cardiff, there are some agencies, but I couldn’t trust them. By contrast, most PBSAs in Cardiff do have their own website, and some of them have Chinese websites. it is really easy to find an accommodation to live in Cardiff with those websites.”</p>
         <p>“The reason why I moved out the halls is because I think the rooms I lived in were not worth that money, there is no gym, no common room and other facilities but cost me £185 per week, even though it is a studio, but it is not that specious. Another reason is that I want to live with friends, I’m really bored when I come back after class, I need my own room, but I also need flatmates. ”</p>
         <p>“I moved back to PBSA again in the summer period because I found that there are lots of problems in the shared-house during the last ten months. The housemate was friendly, but the agency was horrible. I would rather spend more money to live in a private hall. As I don’t need to worry with the bills and rents if shared-house mate delayed their rent.”</p>
         <p>“The new dorm I’m living now is good. I have took over the contract from one of my friends, and he gave me a “friendship” discount for this room, only £100 per week. The price he offered is affordable for me, if you ask me whether I would move in with the original price, I would say no. even though this hall equipped with luxury level facilities, but I think except the laundry and gym, there were rarely people use that in often. And there is a 'cinema room' on the first floor in our building and I never once saw anybody in there.”</p>
         <p>“The new dorm I’m living now is good. I have took over the contract from one of my friends, and he gave me a “friendship” discount for this room, only £100 per week. The price he offered is affordable for me, if you ask me whether I would move in with the original price, I would say no. even though this hall equipped with luxury level facilities, but I think except the laundry and gym, there were rarely people use that in often. And there is a 'cinema room' on the first floor in our building and I never once saw anybody in there.”</p>
+        <h5>Returning to the statistics of the situation in Cardiff, student numbers are going down since 2014, especially when considering international students. If this trend continues for the next few academic years, the situation for Cardiff does not presently seem sustainable?</h5>
         <p>In 2016/17, there were more than 50 thousand full-time students enrolled in Cardiff. 45 thousand of them were undergraduates, this meant that in the summer period there might just have been five thousand people staying in Cardiff. However, there are more than 20 thousand PBSA rooms on services during period. Similarly, three quarter of PBSA at the potential of being “ghost – town”. Even though there are some postgraduate students trying to find a new home, they have got numerous choices available. In this case, some halls are far away from university or the city centre or with higher rentals fail to attract adequate attention from students to fill in the empty rooms.</p>
         <p>Therefore, some developments cannot bear this market pressure and apply for their halls to be allowed to let to non-students. Livin Cardiff, a development on City Road, has  applyed for a temporary shift until September 2018, because there are not enough students willing to take their rooms.</p>
         <h5>For other developments, while the student intake is lower than the volume of accommodation supply, this does back the question whether developers have the incentive to further invest in building new properties in Cardiff in the future.</h5>
