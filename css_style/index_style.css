@@ -142,19 +142,23 @@ header h2 {
   text-decoration: none;
   outline: none;
   color: #fff;
-  background-color: #b9d98b;
+  background-color: white;
   border: none;
   border-radius: 15px;
-  box-shadow: 0 9px #eaf2d0;
+  box-shadow: 0 9px #c0c2bb;
   margin: 1em;
 }
 
-.button:hover {background-color: #c0f1c1}
+.button:hover {
+  background-color: #999
+
+}
 
 .button:active {
-  background-color: #3e8e41;
+  background-color: #444;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+  font: white
 }
 .button a {
   text-decoration: none;
