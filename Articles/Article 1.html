@@ -45,17 +45,17 @@
                 };
               }, function(error, data) {
                 console.log(data);
-                var svg1 = dimple.newSvg("#main_chart", 390, 260)
+                var svg1 = dimple.newSvg("#main_chart", 500, 260)
                                 .attr("id","chart1");;
 
                 d3.select("#chart1")
                     .append('text')
-                    .attr("transform", "translate(20,20)")
+                    .attr("transform", "translate(40,20)")
                     .style("font-weight","bold")
                     .text("Chart 1: UK HE student enrolments from 2000/01 to 2016/17");
 
                 var Chart1 = new dimple.chart(svg1, data);
-                    Chart1.setBounds(50, 60, 340, 140)
+                    Chart1.setBounds(60, 60, 400, 140)
                     var x = Chart1.addCategoryAxis("x","Year");
                     x.addOrderRule("Year");
                     Chart1.addMeasureAxis("y", "Numbers");
@@ -89,17 +89,17 @@
                 };
               }, function(error, data) {
                 console.log(data)
-                var svg = dimple.newSvg("#accChart", 575, 300)
+                var svg = dimple.newSvg("#accChart", 575, 260)
                                   .attr("id","acc_pie");
 
                 d3.select("#acc_pie")
                     .append('text')
-                    .attr("transform", "translate(15,70)")
+                    .attr("transform", "translate(30,20)")
                     .style("font-weight","bold")
                     .text("Chart 3: Undergraduate Applications and Acceptances by Universities in Cardiff");
 
                 var accChart = new dimple.chart(svg, data);
-                  accChart.setBounds(45, -200, 350, 160)
+                  accChart.setBounds(60, -200, 350, 160)
                   accChart.addMeasureAxis("y", "Numbers");
                   var x = accChart.addCategoryAxis("x", "Year");
                       x.addOrderRule("Year");
@@ -131,17 +131,17 @@
                 };
               }, function(error, data) {
                 console.log(data);
-                var svg = dimple.newSvg("#appRegion", 500, 300)
+                var svg = dimple.newSvg("#appRegion", 550, 260)
                                 .attr("id","ar_C");
 
                 d3.select("#ar_C")
                     .append('text')
-                    .attr("transform", "translate(40,70)")
+                    .attr("transform", "translate(60,20)")
                     .style("font-weight","bold")
                     .text("Chart 4: Undergraduate Applications by regions in Cardiff");
 
                 var arChart = new dimple.chart(svg, data);
-                arChart.setBounds(50, -200, 350, 160)
+                arChart.setBounds(60, -200, 350, 160)
                 var x = arChart.addCategoryAxis("x", ["Year","Region"]);
                 x.addOrderRule("Year");
                 arChart.addMeasureAxis("y", "App");
@@ -170,7 +170,7 @@
                 };
               }, function(error, data) {
                 console.log(data);
-                var svg1 = dimple.newSvg("#enrol_t", 500, 260)
+                var svg1 = dimple.newSvg("#enrol_t", 550, 260)
                                 .attr("id","emor_t");;
 
                 d3.select("#emor_t")
@@ -182,7 +182,7 @@
 
                 var data = dimple.filterData(data, "Year",["2010/11","2011/12","2012/13","2013/14","2014/15","2015/16","2016/17"])
                 var emroChart1 = new dimple.chart(svg1, data);
-                    emroChart1.setBounds(45, 60, 350, 160)
+                    emroChart1.setBounds(60, 60, 350, 160)
                     var x = emroChart1.addCategoryAxis("x", "Year");
                     x.addOrderRule("Year");
                     emroChart1.addMeasureAxis("y", "Numbers");
@@ -191,7 +191,7 @@
                 var emroLegend = emroChart1.addLegend(400, 100, 60, 100, "left");
                     emroChart1.draw();
                 ///////// barchart //////////
-                var svg2 = dimple.newSvg("#emroChart", 570, 280)
+                var svg2 = dimple.newSvg("#emroChart", 550, 260)
                                 .attr("id","emor_chart");;
 
                 d3.select("#emor_chart")
@@ -201,14 +201,14 @@
                     .text("Chart 6: Cardiff HE student enrolments by mode from 2010/11 to 2016/17");
 
                 var emroChart = new dimple.chart(svg2, data);
-                    emroChart.setBounds(45, 50, 350, 160)
+                    emroChart.setBounds(60, 50, 350, 160)
                 var x = emroChart.addCategoryAxis("x", ["Year","Type"]);
                     x.addOrderRule("Year");
                 var y = emroChart.addMeasureAxis("y", "Numbers");
                     // emroChart.addMeasureAxis("z", "Numbers");
                 var s = emroChart.addSeries("University", dimple.plot.bar);
                     emroChart.addSeries(null, dimple.plot.bubble);
-                var emroLegend = emroChart.addLegend(400, 100, 100, 300, "left");
+                var emroLegend = emroChart.addLegend(430, 100, 100, 300, "left");
                     emroChart.draw();
               });
 
@@ -227,7 +227,7 @@
                 };
               }, function(error, data) {
                 console.log(data);
-                var svg = dimple.newSvg("#full", 570, 260)
+                var svg = dimple.newSvg("#full", 550, 280)
                                 .attr("id","full_chart");;
 
                 d3.select("#full_chart")
@@ -237,14 +237,14 @@
                     .text("Char 7: Cardiff full-time HE student enrolments by region from 2013/14 to 2016/17");
 
                 var fullChart = new dimple.chart(svg, data);
-                fullChart.setBounds(45, 50, 350, 160)
+                fullChart.setBounds(60, 50, 350, 180)
                 var x = fullChart.addCategoryAxis("x", ["Region","Year"])
                 x.addGroupOrderRule(["Year","Year"]);
                 var y = fullChart.addMeasureAxis("y", "Numbers");
                 var s = fullChart.addSeries(["University"], dimple.plot.bar);
                 fullChart.addSeries(null, dimple.plot.bubble);
 
-                fullChart.addLegend(400, 100, 100, 300, "left");
+                fullChart.addLegend(450, 100, 100, 300, "left");
                 fullChart.draw();
 
               });

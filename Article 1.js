@@ -16,7 +16,7 @@ d3.csv("../data/Article 1/full-time total.csv",function(Data){
     });
     console.log('data:', data);
 
-        var width = 455;
+        var width = 550;
         var height = 260;
 
         var main_chart = d3.select('#chart_1')
@@ -41,7 +41,7 @@ d3.csv("../data/Article 1/full-time total.csv",function(Data){
 
       // title
     svg.append("text")
-        .attr("x", 160 )
+        .attr("x", 180 )
         .attr("y", -25)
         .attr("class","title")
         .style("text-anchor", "middle")
