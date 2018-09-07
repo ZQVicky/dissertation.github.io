@@ -158,10 +158,10 @@ header h2 {
   background-color: #444;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
-  font: white
 }
 .button a {
   text-decoration: none;
+  color: black;
 }
 .butgroup {
   display: flex;
@@ -170,4 +170,12 @@ header h2 {
 
 .container{
   width: 80vw;
+}
+
+.container a {
+  color: blue;
+}
+
+footer{
+  color: #444;
 }
